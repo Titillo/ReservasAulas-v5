@@ -26,6 +26,7 @@ public class Vista implements IVista{
 	public Vista() {
 		Opcion.setVista(this);
 	}
+	
 	@Override
 	public void setControlador(IControlador controlador) {
 		if(controlador == null ) {

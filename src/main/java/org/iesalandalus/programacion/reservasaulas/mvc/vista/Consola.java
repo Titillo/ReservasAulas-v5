@@ -16,7 +16,7 @@ public class Consola {
 	}
 	
 	public static void mostrarMenu() {
-		mostrarCabecera("GestiÃ³n reserva aulas IES AL-ANDALUS");
+		mostrarCabecera("Gestión reserva aulas IES AL-ANDALUS");
 		for(Opcion opcion : Opcion.values()) {
 			System.out.println(opcion);
 		}
@@ -32,16 +32,27 @@ public class Consola {
 	public static int elegirOpcion() {
 		int opcion;
 		do {
-			System.out.println("Elige una opciÃ³n (0-14): ");
+			System.out.println("Elige una opción (0-14): ");
 			opcion=Entrada.entero();
 		}while((opcion < 0) || (opcion >14));
 		
 		return opcion;
 	}
 	
+	//Leer Aula
+	
 	public static Aula leerAula() {
-		String aula = Consola.leerNombreAula();
-		return new Aula(aula);
+		return new Aula(leerAulaFicticia());
+	}
+	
+	public static int leerNumeroPuestos() {
+		int puestos;
+		do {
+		System.out.println("Numero de puestos del aula: ");
+		puestos=Entrada.entero();
+		}while(puestos<10 && puestos>50);
+		
+		return puestos;
 	}
 	
 	public static String leerNombreAula() {
@@ -51,11 +62,18 @@ public class Consola {
 		return nombreAula;
 	}
 	
+	public static Aula leerAulaFicticia() {
+		return new Aula(leerNombreAula(),leerNumeroPuestos());
+	}
+	
+	
+	//Leer profesor
+	
 	public static Profesor leerProfesor() {
 		String nombreProfesor=Consola.leerNombreProfesor();
 		System.out.println("Correo del Profesor: ");
 		String correoProfesor=Entrada.cadena();
-		System.out.println("TelÃ©fono del Profesor: ");
+		System.out.println("Teléfono del Profesor: ");
 		String telefonoProfesor=Entrada.cadena();
 		return new Profesor(nombreProfesor,correoProfesor,telefonoProfesor);
 	}
@@ -71,7 +89,7 @@ public class Consola {
 		Tramo tramo;
 		int cadenaTramo;
 		do {
-			System.out.println("Tramo horario => 0 para MaÃ±ana | 1 para Tarde ");
+			System.out.println("Tramo horario => 0 para Mañana | 1 para Tarde ");
 			cadenaTramo=Entrada.entero();
 		}while(cadenaTramo < 0 || cadenaTramo > 1);
 		

@@ -46,7 +46,7 @@ public class Aula {
 	private void setPuestos(int puestos) 
 	{
 		if(puestos<MN_PUESTOS && puestos>MAX_PUESTOS) {
-			throw new IllegalArgumentException("ERROR: El nÃºmero de puestos no es correcto.");
+			throw new IllegalArgumentException("ERROR: El número de puestos no es correcto.");
 		}else {
 			this.puestos=puestos;
 		}	

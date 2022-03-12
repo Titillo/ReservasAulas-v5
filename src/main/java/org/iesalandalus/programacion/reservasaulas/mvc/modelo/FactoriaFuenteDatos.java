@@ -1,11 +1,24 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo;
 
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros.FactoriaFuenteDatosFicheros;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria.FactoriaFuenteDatosMemoria;
+
 public enum FactoriaFuenteDatos {
-	public static final FactoriaFuenteDatos MEMORIA;
-	
-	FactoriaFuenteDatos() {
-	
-	}
+	MEMORIA {
+		public IFuenteDatos crear() {
+			return new FactoriaFuenteDatosMemoria();
+		}
+	},
+	FICHERO {
+		public IFuenteDatos crear() {
+			return new FactoriaFuenteDatosFicheros();
+		}
+	};
 	
 	public abstract IFuenteDatos crear();
+	
+	FactoriaFuenteDatos() {
+		
+	}
+	
 }

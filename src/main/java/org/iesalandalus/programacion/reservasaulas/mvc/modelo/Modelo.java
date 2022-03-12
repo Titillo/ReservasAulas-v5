@@ -14,26 +14,21 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 
 public class Modelo implements IModelo{
-	/*
-	 * Atrinutos
-	 */
 	
 	private IAulas aulas;
 	private IProfesores profesores;
 	private IReservas reservas;
 	
-	/*
-	 * Constructor
-	 */
+	//Constructor
+	
 	public Modelo(IFuenteDatos datos) {
-		datos.crearAulas();
-		datos.crearProfesores();
-		datos.crearReservas();
+		aulas= datos.crearAulas();
+		profesores=datos.crearProfesores();
+		reservas=datos.crearReservas();
 	}
 	
-	/*
-	 * MÃ©todos Aula
-	 */
+	//Métodos Aula
+	
 	@Override
 	public List<Aula> getAulas() {
 		return aulas.getAulas();
