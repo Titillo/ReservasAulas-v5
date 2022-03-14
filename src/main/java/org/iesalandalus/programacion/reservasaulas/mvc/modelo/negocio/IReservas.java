@@ -9,6 +9,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
 public interface IReservas extends IFuenteDatos {
+	
+	public void comenzar();
+	public void terminar();
 	public  List<Reserva> getReservas();
 	public int getNumReservas();
 	public void insertar (Reserva reservas) throws OperationNotSupportedException; 

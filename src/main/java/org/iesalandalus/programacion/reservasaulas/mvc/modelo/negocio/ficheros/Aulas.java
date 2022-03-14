@@ -1,5 +1,13 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +21,7 @@ public class Aulas implements IAulas {
 	/*
 	 * Atributos
 	 */ 
+	private static final String NOMBRE_FICHERO_AULAS="datos/aulas.dat";
 
 	private List<Aula> coleccionAulas;
 	
@@ -26,6 +35,53 @@ public class Aulas implements IAulas {
 	
 	public Aulas(Aulas aulas) {
 		setAulas(aulas);
+	}
+	
+	@Override
+	public void comenzar() {
+		leer();
+		
+	}
+	private void leer() {
+		File ficehroAulas = new File(NOMBRE_FICHERO_AULAS);
+		try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(ficehroAulas))){
+			Aula aula = null;
+			do {
+				aula= (Aula) entrada.readObject();
+				insertar(aula);
+			}while(aula!= null);
+			
+		}catch (ClassNotFoundException e) {
+			System.out.println("ERROR: No puedo encontrar la clase que tengo que leer");
+		}catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se puede abir el fichero de aulas");
+		}catch (EOFException e) {
+			System.out.println("Fichero leido correctamente");
+		}catch (IOException e) {
+			System.out.println("ERROR en la Entrada/Salida");
+		}catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	@Override
+	public void terminar() {
+		
+		escribir();
+	}
+	
+	private void escribir() {
+		File ficehroAulas = new File(NOMBRE_FICHERO_AULAS);
+		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(ficehroAulas))){
+			for(Aula aula : coleccionAulas) {
+				salida.writeObject(aula);
+			}
+		}catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se puede crear el fichero de aulas");
+		}catch (IOException e) {
+			System.out.println("ERROR en la Entrada/Salida");
+			
+		}
 	}
 	
 	/*
@@ -133,5 +189,7 @@ public class Aulas implements IAulas {
 		}
 		return representarAula;
 	}
+
+
 
 }

@@ -134,4 +134,14 @@ public class Aulas implements IAulas {
 		return representarAula;
 	}
 
+	@Override
+	public void comenzar() {
+
+	}
+
+	@Override
+	public void terminar() {
+
+	}
+
 }

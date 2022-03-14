@@ -206,10 +206,8 @@ public class Vista implements IVista{
 		}
 		
 	}
+
 	
-	/*
-	 * getReservas
-	 */
 	
 	public void listaReservasAula() {
 		Consola.mostrarCabecera("Listar Reservas de Aulas");
@@ -234,19 +232,7 @@ public class Vista implements IVista{
 			System.out.println(it);
 		}
 	}
-	
-	public void listaReservasPermanencia() {
-		Consola.mostrarCabecera("Listar Reservas de Aulas");
-		Permanencia permanencia = new Permanencia(Consola.leeDia(),Consola.leerTramo());
-		List<Reserva> reservas = new ArrayList<>(controlador.getReservasPermanencia(permanencia));
-		Iterator<Reserva> it = reservas.iterator();
-		if(reservas.size()==0) {
-			System.out.println("No hay reservas de aulas que mostrar");
-		}
-		while(it.hasNext()) {
-			System.out.println(it);
-		}
-	}
+
 	
 	/*
 	 * Consultar disponibilidad

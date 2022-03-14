@@ -1,5 +1,13 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,7 +26,7 @@ public class Reservas implements IReservas{
 	/*
 	 * Atributos
 	 */ 
-	
+	private static final String NOMBRE_FICHERO_RESERVAS="datos/reservas.dat";
 	private List<Reserva> coleccionReservas;
 	
 	/*
@@ -32,6 +40,54 @@ public class Reservas implements IReservas{
 	public Reservas(Reservas reservas) {
 		setReservas(reservas);
 	}
+	
+	@Override
+	public void comenzar() {
+		leer();
+		
+	}
+	private void leer() {
+		File ficheroReserva= new File(NOMBRE_FICHERO_RESERVAS);
+		try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(ficheroReserva))){
+			Reserva reserva = null;
+			do {
+				reserva= (Reserva) entrada.readObject();
+				insertar(reserva);
+			}while(reserva!= null);
+			
+		}catch (ClassNotFoundException e) {
+			System.out.println("ERROR: No puedo encontrar la clase que tengo que leer");
+		}catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se puede abir el fichero de aulas");
+		}catch (EOFException e) {
+			System.out.println("Fichero leido correctamente");
+		}catch (IOException e) {
+			System.out.println("ERROR en la Entrada/Salida");
+		}catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	@Override
+	public void terminar() {
+		
+		escribir();
+	}
+	
+	private void escribir() {
+		File ficheroReserva = new File(NOMBRE_FICHERO_RESERVAS);
+		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(ficheroReserva))){
+			for(Reserva reserva : coleccionReservas) {
+				salida.writeObject(reserva);
+			}
+		}catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se puede crear el fichero de aulas");
+		}catch (IOException e) {
+			System.out.println("ERROR en la Entrada/Salida");
+			
+		}
+	}
+	
 
 	/*
 	 * setReservas()

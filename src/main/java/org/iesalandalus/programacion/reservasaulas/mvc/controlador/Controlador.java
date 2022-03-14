@@ -41,6 +41,7 @@ public class Controlador implements IControlador {
 	
 	@Override
 	public void comenzar() {
+		modelo.comenzar();
 		vista.comenzar();
 	}
 	
@@ -50,6 +51,7 @@ public class Controlador implements IControlador {
 	
 	@Override
 	public void terminar() {
+		modelo.terminar();
 		System.out.println("Hasta prontoooo!!!");
 	}
 	
