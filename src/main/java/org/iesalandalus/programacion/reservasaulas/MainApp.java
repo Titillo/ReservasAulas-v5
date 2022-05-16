@@ -13,10 +13,11 @@ import org.iesalandalus.programacion.reservasaulas.mvc.vista.Vista;
 public class MainApp {
 
 	public static void main(String[] args) {
-		IModelo modelo = new Modelo(FactoriaFuenteDatos.MEMORIA.crear());
+		IModelo modelo = new Modelo(FactoriaFuenteDatos.FICHERO.crear());
 		IVista vista = new Vista();
 		IControlador controlador = new Controlador (modelo,vista);
 		controlador.comenzar();	
+		
 	}
 
 }
