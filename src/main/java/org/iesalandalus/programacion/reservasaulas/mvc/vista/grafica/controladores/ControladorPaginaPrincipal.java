@@ -15,9 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,8 +23,7 @@ import javafx.stage.Stage;
 public class ControladorPaginaPrincipal {
 	
 	private IControlador controladorMVC;
-	private ControladorInsertarAula controladorInsertarAulas;
-
+	
 	public void setControladorMVC(IControlador controladorMVC) {
 		this.controladorMVC = controladorMVC;
 	}
@@ -63,14 +60,15 @@ public class ControladorPaginaPrincipal {
 	private Button bntBorrarReserva;
 	@FXML
 	private Button bntListarReserva;
-	
-	
-	private Stage listarAulas;
-	private ControladorListarAula cListarAulas;
-
 	private Stage panelAula;
 	private ControladorInsertarAula cAnadirAula;
 
+	
+	/*
+	private Stage listarAulas;
+	private ControladorListarAula cListarAulas;
+
+	
 	private Stage borrarAula;
 	private ControladorBorrarAula cBorrarAula;
 
@@ -100,7 +98,7 @@ public class ControladorPaginaPrincipal {
 	
 	private Stage borrarReserva;
 	private ControladorBorrarReserva cBorrarReserva;
-	
+	*/
 	@FXML
 	private void salirAplicacion(ActionEvent event) {	
 		if (Dialogos.mostrarDialogoConfirmacion("Salir de la Aplicación", "¿Realmente quieres salir?", null)) {
@@ -143,31 +141,8 @@ public class ControladorPaginaPrincipal {
 	@FXML
 	private void borrarAula() throws IOException {
 		
-		borrarAula.showAndWait();
 	}
-	/*
-	private void crearBorrarAula() throws IOException {
-		if (borrarAula == null) {
-			borrarAula = new Stage();
-			FXMLLoader cargadorBorrarAula = new FXMLLoader(
-					LocalizadorRecursos.class.getResource("vistas/BorrarAula.fxml"));
-			VBox raizBorrarAula = cargadorBorrarAula.load();
-			cBorrarAula = cargadorBorrarAula.getController();
-			cBorrarAula.setControladorMVC(controladorMVC);
-			cBorrarAula.inicializa();
-			Scene escenaBorrarAula = new Scene(raizBorrarAula);
-			borrarAula.setTitle("Borrar Aula");
-			borrarAula.getIcons()
-					.add(new Image(LocalizadorRecursos.class.getResourceAsStream("imagenes/logo-ies.png")));
-
-			borrarAula.initModality(Modality.APPLICATION_MODAL);
-			borrarAula.setScene(escenaBorrarAula);
-			borrarAula.setResizable(false);
-		} else {
-			cBorrarAula.inicializa();
-		}
-	}
-	*/
+	
 	@FXML
 	private void listarAula(ActionEvent event) {
 		
