@@ -10,7 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ControladorInsertarAula {
-private IControlador controladorMVC;
+	
+	private static final String ER_OBLIGATORIO = ".+";
+	private static final String ER_PUESTOS = "0?\\d{1,2}|50";
+	
+	private IControlador controladorMVC;
 	
 	@FXML
 	private TextField tfNombre;
@@ -24,6 +28,16 @@ private IControlador controladorMVC;
 	
 	public void setControladorMVC(IControlador controladorMVC) {
 		this.controladorMVC = controladorMVC;
+	}
+	public void inicializa() {
+		tfNombre.setText("");
+		tfPuestos.setText("");
+
+	}
+	@FXML
+	private void initialize() {
+		tfNombre.textProperty().addListener((ob, ov, nv) -> compruebaCampoTexto(ER_OBLIGATORIO, tfNombre));
+		tfPuestos.textProperty().addListener((ob, ov, nv) -> compruebaCampoTexto(ER_PUESTOS, tfPuestos));
 	}
 	
 	@FXML
@@ -58,5 +72,14 @@ private IControlador controladorMVC;
 			Dialogos.mostrarDialogoError("Añadir Aula", e.getMessage());
 		}
 		return aula;
+	}
+	
+	private void compruebaCampoTexto(String er, TextField campoTexto) {
+		String texto = campoTexto.getText();
+		if (texto.matches(er)) {
+			campoTexto.setStyle("-fx-border-color: green; -fx-border-radius: 5;");
+		} else {
+			campoTexto.setStyle("-fx-border-color: red; -fx-border-radius: 5;");
+		}
 	}
 }

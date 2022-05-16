@@ -1,5 +1,11 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores;
 
-public class ControladorBorrarAula {
+import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 
+public class ControladorBorrarAula {
+	
+	private IControlador controladorMVC;
+	public void setControladorMVC(IControlador controladorMVC) {
+		this.controladorMVC = controladorMVC;
+	}
 }

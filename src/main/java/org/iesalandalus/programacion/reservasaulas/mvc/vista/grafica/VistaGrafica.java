@@ -51,7 +51,7 @@ public class VistaGrafica extends Application implements IVista {
 	
 	
 	private void confirmarSalida(Stage Principal, WindowEvent e) {
-		if (Dialogos.mostrarDialogoConfirmacion("Salir", "Â¿EstÃ¡s seguro de que quieres salir de la aplicaciÃ³n?", Principal)) {
+		if (Dialogos.mostrarDialogoConfirmacion("Salir de la Aplicación", "¿Realmente quieres salir?", Principal)) {
 			controladorMVC.terminar();
 			Principal.close();
 		}
