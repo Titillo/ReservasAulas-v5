@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorPaginaPrincipal">
+   <children>
+      <GridPane layoutY="27.0" prefHeight="401.0" prefWidth="633.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="105.0" prefWidth="210.0" text="Aula" textAlignment="CENTER" textFill="#f87676">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="103.0" prefWidth="234.0" text="Profesor" textFill="#f87676" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="105.0" prefWidth="241.0" text="Reserva" textFill="#f87676" GridPane.columnIndex="2">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnInsertarAula" mnemonicParsing="false" onAction="#insertarAula" prefHeight="60.0" prefWidth="195.0" text="INSERTAR" GridPane.rowIndex="1" />
+            <Button fx:id="bntBorrarAula" mnemonicParsing="false" onAction="#borrarAula" prefHeight="60.0" prefWidth="195.0" text="BORRAR" GridPane.rowIndex="2" />
+            <Button fx:id="btnListarAula" mnemonicParsing="false" onAction="#listarAula" prefHeight="60.0" prefWidth="195.0" text="LISTAR" GridPane.rowIndex="3" />
+            <Button fx:id="bntReservasAula" mnemonicParsing="false" onAction="#reservasAula" prefHeight="60.0" prefWidth="195.0" text="RESERVAS" GridPane.rowIndex="4" />
+            <Button fx:id="bntDisponibilidad" mnemonicParsing="false" onAction="#disponibilidad" prefHeight="60.0" prefWidth="195.0" text="DISPONIBILIDAD" GridPane.rowIndex="5" />
+            <Button fx:id="bntBorrarProfesor" mnemonicParsing="false" onAction="#borrarProfesor" prefHeight="60.0" prefWidth="195.0" text="BORRAR" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="bntInsertarProfesor" mnemonicParsing="false" onAction="#insertarProfesor" prefHeight="60.0" prefWidth="195.0" text="INSERTAR" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="bntListarProfesor" mnemonicParsing="false" onAction="#listarProfesor" prefHeight="60.0" prefWidth="195.0" text="LISTAR" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="bntInsertarReserva" mnemonicParsing="false" onAction="#insertarReserva" prefHeight="60.0" prefWidth="195.0" text="INSETAR" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="bntBorrarReserva" mnemonicParsing="false" onAction="#borrarReserva" prefHeight="60.0" prefWidth="195.0" text="BORRAR" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="bntListarReserva" mnemonicParsing="false" onAction="#listarReserva" prefHeight="60.0" prefWidth="195.0" text="LISTAR" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="bntReservasProfesor" mnemonicParsing="false" onAction="#reservasProfesor" prefHeight="60.0" prefWidth="195.0" text="RESERVAS" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="633.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Opciones">
+            <items>
+              <MenuItem fx:id="miSalir" mnemonicParsing="false" onAction="#salirAplicacion" text="Salir" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</Pane>
