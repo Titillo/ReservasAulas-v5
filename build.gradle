@@ -28,9 +28,6 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
-    
-	// Uso de Mockito
-    testCompile "org.mockito:mockito-inline:+"
 }
 
 //Añadido por mí
@@ -40,35 +37,10 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = 'org.iesalandalus.programacion.biblioteca.MainApp'
+mainClassName = 'org.iesalandalus.programacion.reservasaulas.MainApp'
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'org.iesalandalus.programacion.biblioteca.MainApp'
+		attributes 'Main-Class': 'org.iesalandalus.programacion.reservasaulas.MainApp'
 	}
-}
-
-run {
-    
-	/*doFirst {
-		println ""
-		println "----------------------------------------"
-		println "-------Ejecutando Clase Principal-------"
-		println "----------------------------------------"
-		println ""
-	}
-	doLast {
-                println ""
-		println "------------------------------------------------"
-		println "-------Finaliza ejecución Clase Principal-------"
-		println "------------------------------------------------"
-		println ""
-	}*/
-	standardInput = System.in
-}
-
-test {
-    testLogging {
-        exceptionFormat = 'full'
-    }
 }

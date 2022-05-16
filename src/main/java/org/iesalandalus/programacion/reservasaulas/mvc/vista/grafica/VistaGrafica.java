@@ -1,26 +1,16 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica;
 
-
-import java.io.IOException;
-
-
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.IVista;
-import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladoresvistas.ControladorVentanaPrincipal;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.LocalizadorRecursos;
-import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.utilidades.Dialogos;
-
+import org.iesalandalus.programacion.reservasaulas.mvc.vista.utilidades.Dialogos;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
+
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -44,36 +34,26 @@ public class VistaGrafica extends Application implements IVista {
 	}
 	
 	@Override
-	public void start(Stage escenarioPrincipal) {
+	public void start(Stage Principal) {
 		try {
-			FXMLLoader cargadorVentanaPrincipal = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/VentanaPrincipal.fxml"));
-			VBox raiz = cargadorVentanaPrincipal.load();
-			 
-			ControladorVentanaPrincipal cVentanaPrincipal = cargadorVentanaPrincipal.getController();
-			cVentanaPrincipal.setControladorMVC(controladorMVC);
+			Parent root = FXMLLoader.load(LocalizadorRecursos.class.getResource("vistas/PaginaPrincipal.fxml"));
 			
-			Scene escena = new Scene(raiz);
-			
-			escenarioPrincipal.setOnCloseRequest(e -> confirmarSalida(escenarioPrincipal, e));
-			escenarioPrincipal.setTitle("Reservas aulas");
-			  
-			escenarioPrincipal.getIcons().add(
-					   new Image(
-							   LocalizadorRecursos.class.getResourceAsStream("imagenes/logo-ies.png" )));
-
-			escenarioPrincipal.setScene(escena);
-			escenarioPrincipal.setResizable(false);
-			escenarioPrincipal.show();
+			Scene scene = new Scene(root);
+			//scene.getStylesheets().add(LocalizadorRecursos.class.getResource("estilos/estilos.css").toExternalForm());
+			Principal.setScene(scene);
+			Principal.setTitle("Gesti�n IES AL-ANDALUS");
+			Principal.setOnCloseRequest(e -> confirmarSalida(Principal, e));
+			Principal.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	
-	private void confirmarSalida(Stage escenarioPrincipal, WindowEvent e) {
-		if (Dialogos.mostrarDialogoConfirmacion("Salir", "¿Estás seguro de que quieres salir de la aplicación?", escenarioPrincipal)) {
+	private void confirmarSalida(Stage Principal, WindowEvent e) {
+		if (Dialogos.mostrarDialogoConfirmacion("Salir", "¿Estás seguro de que quieres salir de la aplicación?", Principal)) {
 			controladorMVC.terminar();
-			escenarioPrincipal.close();
+			Principal.close();
 		}
 		else {
 			e.consume();	

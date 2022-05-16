@@ -171,7 +171,7 @@ public class Dialogos {
 		((Button) dialogo.getDialogPane().lookupButton(ButtonType.CANCEL)).setId(ID_BT_CANCELAR);
 		dialogo.setTitle(titulo);
 		((Stage) dialogo.getDialogPane().getScene().getWindow()).getIcons()
-		.add(new Image(LocalizadorRecursos.class.getResourceAsStream("imagenes/logo-ies.png")));
+		.add(new Image(LocalizadorRecursos.class.getResourceAsStream("/imagenes/logo-ies.png")));
 		dialogo.setHeaderText(null);
 		dialogo.setContentText(contenido);
 		if (propietario != null) {
