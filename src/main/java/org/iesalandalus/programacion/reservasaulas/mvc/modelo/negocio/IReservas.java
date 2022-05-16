@@ -2,13 +2,13 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio;
 
 import java.util.List;
 import javax.naming.OperationNotSupportedException;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.IFuenteDatos;
+
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
-public interface IReservas extends IFuenteDatos {
+public interface IReservas {
 	
 	public void comenzar();
 	public void terminar();

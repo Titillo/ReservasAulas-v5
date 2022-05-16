@@ -9,14 +9,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
+
 
 public class Profesores implements IProfesores{
 	/*
@@ -34,6 +35,9 @@ public class Profesores implements IProfesores{
 	}
 	
 	public Profesores(Profesores profesores) {
+		if (profesores == null)
+			throw new NullPointerException("ERROR: No se pueden copiar profesores nulos.");
+
 		setProfesores(profesores);
 	}
 	
@@ -91,10 +95,7 @@ public class Profesores implements IProfesores{
 	 */
 	
 	private void setProfesores(Profesores profesores) {
-		if(profesores == null)
-			throw new NullPointerException("ERROR: No se pueden copiar profesores nulos.");
-		
-		coleccionProfesores=new ArrayList<>(profesores.coleccionProfesores);
+		this.coleccionProfesores = copiaProfundaProfesores(profesores.getProfesores());
 	}
 	/*
 	 * CopiaProfundaProfesor()
@@ -113,7 +114,10 @@ public class Profesores implements IProfesores{
 	 */
 	@Override
 	public  List<Profesor> getProfesores() {
-		return copiaProfundaProfesores(coleccionProfesores);
+		List<Profesor> profesores = copiaProfundaProfesores(coleccionProfesores);
+		profesores.sort(Comparator.comparing(Profesor::getNombre));
+		return profesores;
+
 	}
 	
 	
@@ -186,23 +190,5 @@ public class Profesores implements IProfesores{
 			representarProfesores.add(new String(profesor.toString()));	
 		}
 		return representarProfesores;
-	}
-
-	@Override
-	public Aulas crearAulas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Profesores crearProfesores() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Reservas crearReservas() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

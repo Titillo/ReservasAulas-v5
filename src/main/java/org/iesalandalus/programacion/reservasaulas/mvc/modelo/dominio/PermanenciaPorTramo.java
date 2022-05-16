@@ -10,16 +10,11 @@ public class PermanenciaPorTramo extends Permanencia{
 	
 	public PermanenciaPorTramo(LocalDate dia, Tramo tramo) {
 		super(dia);
-		if(dia==null)
-			throw new NullPointerException("ERROR");
-		
 		setTramo(tramo);
 	}
 	
 	public PermanenciaPorTramo(PermanenciaPorTramo permTramo) {
 		super(permTramo);
-		if(permTramo==null)
-			throw new NullPointerException("ERROR: ");
 		setTramo(permTramo.getTramo());
 	}
 	
@@ -29,7 +24,7 @@ public class PermanenciaPorTramo extends Permanencia{
 
 	private void setTramo(Tramo tramo) {
 		if(tramo==null)
-			throw new NullPointerException("ERROR: ");
+			throw new NullPointerException("ERROR: El tramo de una permanencia no puede ser nulo.");
 		
 		this.tramo = tramo;
 	}

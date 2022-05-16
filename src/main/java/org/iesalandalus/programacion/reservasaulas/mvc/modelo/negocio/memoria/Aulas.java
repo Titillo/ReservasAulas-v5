@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class Aulas implements IAulas {
 	}
 	
 	public Aulas(Aulas aulas) {
+		if(aulas == null) 
+			throw new NullPointerException("ERROR: No se pueden copiar aulas nulas.");
+			
 		setAulas(aulas);
 	}
 	
@@ -33,11 +38,8 @@ public class Aulas implements IAulas {
 	 */
 	
 	private void setAulas(Aulas aulas) {
-		if(aulas == null) {
-			throw new NullPointerException("ERROR: No se pueden copiar aulas nulas.");
-		}else {
-		coleccionAulas = new ArrayList<>(aulas.coleccionAulas);
-		}
+		this.coleccionAulas = copiaProfundaAulas(aulas.getAulas());
+		
 	}
 	
 	/*
@@ -45,7 +47,12 @@ public class Aulas implements IAulas {
 	 */
 	@Override
 	public List<Aula> getAulas(){
-		return copiaProfundaAulas(coleccionAulas);
+		Comparator<Aula> comparator = Comparator.comparing(Aula::getNombre);
+		List<Aula> copiaAulas = copiaProfundaAulas(coleccionAulas);
+
+		Collections.sort(copiaAulas, comparator);
+
+		return copiaAulas;
 	}
 	
 	/*

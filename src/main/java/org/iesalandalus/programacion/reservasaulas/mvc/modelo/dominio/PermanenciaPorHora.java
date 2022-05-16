@@ -3,14 +3,13 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 
 public class PermanenciaPorHora extends Permanencia {
 	
 	private static final int PUNTOS=3;
 	private static final LocalTime HORA_INICIO= LocalTime.of(8, 0);
 	private static final LocalTime HORA_FIN= LocalTime.of(22, 0);
-	protected static final DateTimeFormatter FORMATO_HORA= DateTimeFormatter.ofPattern("^[0-2][0-9]:[0-5][0-9]$");
+	protected static final DateTimeFormatter FORMATO_HORA= DateTimeFormatter.ofPattern("HH:mm");
 	
 	private LocalTime hora;
 	
@@ -25,11 +24,7 @@ public class PermanenciaPorHora extends Permanencia {
 	public PermanenciaPorHora(PermanenciaPorHora permHora) 
 	{
 		super(permHora);
-		if(permHora==null)
-			throw new NullPointerException("ERROR");
-		
-		setHora(permHora.getHora());
-		
+		setHora(permHora.getHora());		
 	}
 	
 
@@ -38,6 +33,13 @@ public class PermanenciaPorHora extends Permanencia {
 	}
 
 	public void setHora(LocalTime hora) {
+		if (hora == null) 
+			throw new NullPointerException("ERROR: La hora de una permanencia no puede ser nula.");
+		if (hora.isBefore(HORA_INICIO) || hora.isAfter(HORA_FIN)) 
+			throw new IllegalArgumentException("ERROR: La hora de una permanencia no es válida.");
+		if (hora.getMinute() != 0) 
+			throw new IllegalArgumentException("ERROR: La hora de una permanencia debe ser una hora en punto.");
+		
 		this.hora = hora;
 	}
 

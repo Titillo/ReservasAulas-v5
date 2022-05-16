@@ -1,12 +1,10 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
@@ -70,7 +68,7 @@ public class Vista implements IVista{
 		try {
 			controlador.insertarAula(Consola.leerAula());
 			System.out.println("Aula insertada correctamente");
-		}catch(OperationNotSupportedException | IllegalArgumentException e) {
+		}catch(OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -80,7 +78,7 @@ public class Vista implements IVista{
 		try {
 			controlador.insertarProfesor(Consola.leerProfesor());
 			System.out.println("Profesor insertado correctamente");
-		}catch(OperationNotSupportedException | IllegalArgumentException e) {
+		}catch(OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 		
@@ -94,7 +92,7 @@ public class Vista implements IVista{
 		Consola.mostrarCabecera("Borrar Aula");
 		try {
 			controlador.borrarAula(Consola.leerAula());
-		}catch(OperationNotSupportedException | IllegalArgumentException e) {
+		}catch(OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -103,7 +101,7 @@ public class Vista implements IVista{
 		Consola.mostrarCabecera("Borrar Profesor");
 		try {
 			controlador.borrarProfesor(Consola.leerProfesor());
-		}catch(OperationNotSupportedException | IllegalArgumentException e) {
+		}catch(OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -118,7 +116,7 @@ public class Vista implements IVista{
 			Aula aula = controlador.buscarAula(Consola.leerAula());
 			String mensaje = (aula!=null) ? aula.toString():"Aula no econtrada";
 			System.out.println(mensaje);
-		}catch(IllegalArgumentException e) {
+		}catch(IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -129,7 +127,7 @@ public class Vista implements IVista{
 			Profesor profesor = controlador.buscarProfesor(Consola.leerProfesor());
 			String mensaje = (profesor!=null) ? profesor.toString():"Profesor no econtrado";
 			System.out.println(mensaje);
-		}catch(IllegalArgumentException e) {
+		}catch(IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -140,33 +138,36 @@ public class Vista implements IVista{
 	
 	public void listarAulas() {
 		Consola.mostrarCabecera("Listar Aulas");
-		try {
-			List<String> aulas = controlador.representarAulas();
-			//(int i=0;i<aulas.leng-1;i++) {
-				System.out.println(aulas.toString());
-			//}
-		}catch(NullPointerException e) {
-			System.out.println(e.getMessage());
+		List<String> aulas = controlador.representarAulas();
+		if (aulas.size() > 0) {
+			for (String aula : aulas) {
+				System.out.println(aula);
+			}
+
+		} else {
+			System.out.println("ERROR: No hay aulas que listar. Debe insertar primero un aula en el sistema.");
 		}
 	}
 	
 	public void listarProfesores() {
-		try {
-			Consola.mostrarCabecera("Listar Profesores");
-			List<String> profesores = controlador.representarProfesores();
-			System.out.println(profesores);
-		}catch(NullPointerException e) {
-			System.out.println(e.getMessage());
+		List<String> profesores = controlador.representarProfesores();
+		if (profesores.size() > 0) {
+			for (String profesor:profesores) {
+				System.out.println(profesor);
+			}
+		} else {
+			System.out.println("ERROR: No hay profesores que listar. Debe insertar primero un profesor en el sistema.");
 		}
 	}
 	
 	public void listarReservas() {
-		try {
-			Consola.mostrarCabecera("Listar Reservas");
-			List<String> reservas = controlador.representarReservas();
-			System.out.println(reservas);
-		}catch(NullPointerException e) {
-			System.out.println(e.getMessage());
+		List<String> reservas = controlador.representarReservas();
+		if (reservas.size() > 0) {
+			for (String reserva: reservas) {
+				System.out.println(reserva);
+			}
+		} else {
+			System.out.println("ERROR: No hay reservas que listar. Debe insertar primero una reserva.");
 		}
 	}
 	
@@ -178,13 +179,24 @@ public class Vista implements IVista{
 		Consola.mostrarCabecera("Realizar Reserva");
 		
 		try {
-			Permanencia permanencia=new Permanencia(Consola.leeDia(),Consola.leerTramo());
-			Profesor profesor = new Profesor(Consola.leerProfesor());
-			Aula aula = new Aula(Consola.leerAula());
-			Reserva reserva = new Reserva(profesor,aula,permanencia);
-			controlador.realizarReserva(reserva);
-			System.out.println("Aula insertada correctamente");
-		}catch(OperationNotSupportedException | IllegalArgumentException e) {
+			Profesor profesor = Consola.leerProfesorFicticio();
+			Profesor profesorEncontrado = controlador.buscarProfesor(profesor);
+
+			if (profesorEncontrado != null) {	
+				Aula aula = Consola.leerAulaFicticia();
+				Aula aulaEncontrada = controlador.buscarAula(aula);
+					if (aulaEncontrada != null) {
+						Permanencia permanencia = Consola.leerPermanencia();
+						Reserva reserva = new Reserva(profesorEncontrado, aulaEncontrada, permanencia);
+						controlador.realizarReserva(reserva);
+						System.out.println("Reserva realizada correctamente");
+					}else {
+						System.out.println("ERROR: El aula " + aula.getNombre() + ", no está registrada.");
+					}
+			} else {
+				System.out.println("ERROR: El correo " + profesor.getCorreo() + ", no está registrado.");
+			}
+		}catch(OperationNotSupportedException | IllegalArgumentException | NullPointerException  e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -196,13 +208,10 @@ public class Vista implements IVista{
 	public void anularReserva() {
 		Consola.mostrarCabecera("Borrar Reserva");
 		try {
-			Permanencia permanencia=new Permanencia(Consola.leeDia(),Consola.leerTramo());
-			Profesor profesor = new Profesor(Consola.leerProfesor());
-			Aula aula = new Aula(Consola.leerAula());
-			Reserva reserva = new Reserva(profesor,aula,permanencia);
-			controlador.anularReserva(reserva);
-		}catch(OperationNotSupportedException | IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+			controlador.anularReserva(Consola.leerReservaFicticia());
+			System.out.println("Reserva anulada correctamente.");
+		} catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
 		
 	}
@@ -211,25 +220,25 @@ public class Vista implements IVista{
 	
 	public void listaReservasAula() {
 		Consola.mostrarCabecera("Listar Reservas de Aulas");
-		List<Reserva> reservas = new ArrayList<>(controlador.getReservasAula(Consola.leerAula()));
+		List<Reserva> reservas = controlador.getReservasAula(Consola.leerAulaFicticia());
 		Iterator<Reserva> it = reservas.iterator();
-		if(reservas.size()==0) {
+		if(reservas.size() > 0) {
+			while(it.hasNext())
+				System.out.println(it);
+		}else {
 			System.out.println("No hay reservas de aulas que mostrar");
-		}
-		while(it.hasNext()) {
-			System.out.println(it);
 		}
 	}
 	
 	public void listaReservasProfesor() {
 		Consola.mostrarCabecera("Listar Reservas de Aulas");
-		List<Reserva> reservas = new ArrayList<>(controlador.getReservasProfesor(Consola.leerProfesor()));
+		List<Reserva> reservas = controlador.getReservasProfesor(Consola.leerProfesorFicticio());
 		Iterator<Reserva> it = reservas.iterator();
-		if(reservas.size()==0) {
+		if(reservas.size()>=0) {
+			while(it.hasNext()) 
+				System.out.println(it);
+		}else {
 			System.out.println("No hay reservas de aulas que mostrar");
-		}
-		while(it.hasNext()) {
-			System.out.println(it);
 		}
 	}
 
@@ -240,14 +249,25 @@ public class Vista implements IVista{
 	
 	public void consultarDisponibilidad() {
 		Consola.mostrarCabecera("Consultar Disponibilidad");
-		Permanencia permanencia = new Permanencia(Consola.leeDia(),Consola.leerTramo());
-		Aula aula = new Aula(Consola.leerAula());
-		
-		if(controlador.consultarDisponibilidad(aula, permanencia)) {
-			System.out.println("Si hay disponibilidad");
-		}else {
-			System.out.println("No hay disponibilidad");
+		try {
+			Aula aula = Consola.leerAulaFicticia();
+			Aula aulaRegistrada = controlador.buscarAula(aula);
+
+			if (aulaRegistrada != null) {
+				Permanencia permanencia = Consola.leerPermanencia();
+				if (controlador.consultarDisponibilidad(aula, permanencia)) {
+					System.out.println("Aula: " + aula.getNombre() + "disponible para la permanencia: " + permanencia);
+				} else {
+					System.out.println("Aula: " + aula.getNombre() + "no disponible para la permanencia: " + permanencia);
+				}
+			} else {
+				System.out.println("ERROR: El aula " + aula.getNombre() + " no está registrada.");
+			}
+		} catch (NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+
 		}
+
 		
 	}
 	

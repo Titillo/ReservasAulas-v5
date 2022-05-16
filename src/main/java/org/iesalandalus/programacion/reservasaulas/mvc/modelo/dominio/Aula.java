@@ -36,6 +36,11 @@ public class Aula {
 	}
 
 	private void setNombre(String nombre) {
+		if (nombre == null) 
+			throw new NullPointerException("ERROR: El nombre del aula no puede ser nulo.");
+		if (nombre.isEmpty() || nombre.isBlank()) 
+			throw new IllegalArgumentException("ERROR: El nombre del aula no puede estar vacío.");
+		
 		this.nombre = nombre;
 	}
 	
@@ -45,11 +50,10 @@ public class Aula {
 	
 	private void setPuestos(int puestos) 
 	{
-		if(puestos<MN_PUESTOS && puestos>MAX_PUESTOS) {
+		if(puestos<MN_PUESTOS || puestos>MAX_PUESTOS) 
 			throw new IllegalArgumentException("ERROR: El número de puestos no es correcto.");
-		}else {
-			this.puestos=puestos;
-		}	
+		
+		this.puestos=puestos;	
 	}
 	
 	public float getPuntos() {
@@ -57,7 +61,7 @@ public class Aula {
 	}
 	
 	public static Aula getAulaFicticia(String aula) {
-		return new Aula(aula,20);
+		return new Aula(aula,MN_PUESTOS);
 	}
 
 	/*
@@ -95,7 +99,7 @@ public class Aula {
 
 	@Override
 	public String toString() {
-		return "Aula: [ nombre= " + nombre + " ]";
+		return "Aula: [ nombre= " + nombre + ", puestos=" + puestos+" ]";
 	}
 	
 	

@@ -41,6 +41,14 @@ public class Reserva {
 		if(permanencia==null)
 			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
 		
+		if (permanencia instanceof PermanenciaPorTramo) {
+			this.permanencia = new PermanenciaPorTramo(permanencia.getDia(),
+					((PermanenciaPorTramo) permanencia).getTramo());
+		} else if (permanencia instanceof PermanenciaPorHora) {
+			this.permanencia = new PermanenciaPorHora(permanencia.getDia(),
+					((PermanenciaPorHora) permanencia).getHora());
+		}
+		
 		this.permanencia = permanencia;
 	}
 	
@@ -59,7 +67,7 @@ public class Reserva {
 	}
 	
 	/*
-	 * Get y Set profeseor
+	 * Get y Set profesores
 	 */
 	
 	public Profesor getProfesor() {
@@ -72,22 +80,33 @@ public class Reserva {
 		this.profesor = profesor;
 	}
 	
-	//getReservaFicticioa()
 	/*
+	 * getReservaFicticioa
+	 */
+	
+	
 	public static Reserva getReservaFicticia(Aula aula, Permanencia permanencia) 
 	{
 		if(permanencia==null)
 			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
-		
 		if(aula==null)
 			throw new NullPointerException("ERROR: La reserva debe ser para un aula concreta.");
-			
-		Profesor profesores = Profesor.getProfesorFicticio(profesor.getCorreo());
+		
+		
+		String nombre = "Profesor Ficticio";
+		String correo = "CorreoProfesor@gamil.com";		
+		Profesor profesores = new Profesor(nombre,correo);
 		
 		return new Reserva(profesores,aula, permanencia);
 	}
 	
-	*/
+	/*
+	 * getPuntos
+	 */
+
+	public float getPuntos() {
+		return getAula().getPuntos() + getPermanencia().getPuntos();
+	}
 	
 	/*
 	 * HashCode e Equals

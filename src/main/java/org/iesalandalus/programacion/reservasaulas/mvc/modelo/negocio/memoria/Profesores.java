@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class Profesores implements IProfesores{
 	}
 	
 	public Profesores(Profesores profesores) {
+		if (profesores == null)
+			throw new NullPointerException("ERROR: No se pueden copiar profesores nulos.");
+		
 		setProfesores(profesores);
 	}
 
@@ -55,7 +60,13 @@ public class Profesores implements IProfesores{
 	 */
 	@Override
 	public  List<Profesor> getProfesores() {
-		return copiaProfundaProfesores(coleccionProfesores);
+		Comparator<Profesor> comparator = Comparator.comparing(Profesor::getCorreo);
+
+		List<Profesor> copiaProfesores = copiaProfundaProfesores(coleccionProfesores);
+
+		Collections.sort(copiaProfesores, comparator);
+
+		return copiaProfesores;
 	}
 	
 	
@@ -131,20 +142,14 @@ public class Profesores implements IProfesores{
 	}
 
 	@Override
-	public Aulas crearAulas() {
+	public void comenzar() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public Profesores crearProfesores() {
+	public void terminar() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Reservas crearReservas() {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 }

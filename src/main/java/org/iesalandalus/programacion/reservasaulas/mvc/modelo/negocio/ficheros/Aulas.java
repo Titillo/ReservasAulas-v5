@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class Aulas implements IAulas {
 	}
 	
 	public Aulas(Aulas aulas) {
+		if (aulas == null) 
+			throw new NullPointerException("ERROR: No se pueden copiar aulas nulas.");
+		
 		setAulas(aulas);
 	}
 	
@@ -89,11 +93,7 @@ public class Aulas implements IAulas {
 	 */
 	
 	private void setAulas(Aulas aulas) {
-		if(aulas == null) {
-			throw new NullPointerException("ERROR: No se pueden copiar aulas nulas.");
-		}else {
-		coleccionAulas = new ArrayList<>(aulas.coleccionAulas);
-		}
+		this.coleccionAulas = copiaProfundaAulas(aulas.getAulas());
 	}
 	
 	/*
@@ -101,7 +101,9 @@ public class Aulas implements IAulas {
 	 */
 	@Override
 	public List<Aula> getAulas(){
-		return copiaProfundaAulas(coleccionAulas);
+		List<Aula> aulas = copiaProfundaAulas(coleccionAulas);
+		aulas.sort(Comparator.comparing(Aula::getNombre));
+		return aulas;
 	}
 	
 	/*

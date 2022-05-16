@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.IFuenteDatos;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 
-public interface IProfesores extends IFuenteDatos {
+public interface IProfesores{
 	public void comenzar();
 	public void terminar();
 	public List<Profesor> getProfesores();
