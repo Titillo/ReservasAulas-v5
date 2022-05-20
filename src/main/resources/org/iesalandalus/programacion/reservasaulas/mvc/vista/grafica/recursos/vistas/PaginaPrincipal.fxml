@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -7,10 +8,11 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="vbox" stylesheets="@../estilos/bootstrap3.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorPaginaPrincipal">
    <children>
@@ -40,7 +42,7 @@
                   </GridPane>
                </content>
                <content>
-                  <SplitPane dividerPositions="0.15315315315315314, 0.33933933933933935" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
@@ -51,20 +53,94 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0" />
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0" />
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
+                           <children>
+                              <Button fx:id="bntInsertarAula" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarAula" text="Insertar" />
+                              <Button fx:id="bntBorrarAula" layoutX="76.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarAula" text="Borrar" />
+                              <Button fx:id="bntDisponibleAula" layoutX="480.0" layoutY="10.0" mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad" />
+                              <Button fx:id="bntListarAula" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarAula" text="Listar" />
+                              <Button fx:id="bntReservasAula" layoutX="384.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasAula" text="Reservas" />
+                           </children></AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                           <children>
+                              <TableView prefHeight="221.0" prefWidth="600.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                           </children></AnchorPane>
                     </items>
                   </SplitPane>
                </content>
           </Tab>
           <Tab text="Profesores">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="327.0" prefWidth="554.0" />
-            </content>
+               <content>
+                  <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="154.0" layoutY="-3.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Profesores" textFill="#ff738a">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
+                           <children>
+                              <Button fx:id="bntInsertarProfesor" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar" />
+                              <Button fx:id="bntBorrarProfesor" layoutX="76.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar" />
+                              <Button fx:id="bntListarProfesor" layoutX="355.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarProfesor" text="Listar" />
+                              <Button fx:id="bntReservasProfesor" layoutX="479.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasProfesor" text="Reservas" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                           <children>
+                              <TableView prefHeight="221.0" prefWidth="600.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </content>
           </Tab>
             <Tab text="Rerservas">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="154.0" layoutY="-3.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Reservas" textFill="#ebcc88">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
+                           <children>
+                              <Button fx:id="bntInsertarReserva" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarReserva" text="Insertar" />
+                              <Button fx:id="bntBorrarReserva" layoutX="76.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarReserva" text="Borrar" />
+                              <Button fx:id="bntListarReserva" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarReserva" text="Listar" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                           <children>
+                              <TableView prefHeight="221.0" prefWidth="600.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
                </content>
             </Tab>
         </tabs>
