@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
-public class Reserva {
+import java.io.Serializable;
+
+public class Reserva implements Serializable{
 	
 	/*
 	 * Atributos

@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
-public class Aula {
+import java.io.Serializable;
+
+public class Aula implements Serializable{
 
 	/*
 	 * Atributos
@@ -99,7 +101,7 @@ public class Aula {
 
 	@Override
 	public String toString() {
-		return "Aula: [ nombre= " + nombre + ", puestos=" + puestos+" ]";
+		return "nombre= " + nombre + ", puestos=" + puestos;
 	}
 	
 	

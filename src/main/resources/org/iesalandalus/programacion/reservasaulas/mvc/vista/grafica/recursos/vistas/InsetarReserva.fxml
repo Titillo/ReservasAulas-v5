@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="420.0" styleClass="vbox" stylesheets="@../estilos/bootstrap3.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorInsertarReserva">
+   <children>
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="349.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="142.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="243.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="Aula" />
+            <Label text="Profesor" GridPane.rowIndex="1" />
+            <Label text="Tramo por dia" GridPane.rowIndex="2" />
+            <Label text="Fecha" GridPane.rowIndex="3" />
+            <Label text="Tramo por hora" GridPane.rowIndex="4" />
+            <DatePicker fx:id="dpFecha" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cbTramoDia" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfTramoHora" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="218.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <Button fx:id="bntAceptar" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />
+                  <Button fx:id="bntCerrar" mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+            <ListView fx:id="listaAula" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <ListView fx:id="listaProfesor" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets bottom="15.0" left="30.0" right="30.0" top="15.0" />
+   </padding>
+</VBox>

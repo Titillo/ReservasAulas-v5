@@ -2,15 +2,15 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.IVista;
+import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorPaginaPrincipal;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.LocalizadorRecursos;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.utilidades.Dialogos;
 
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -36,10 +36,14 @@ public class VistaGrafica extends Application implements IVista {
 	@Override
 	public void start(Stage Principal) {
 		try {
-			Parent root = FXMLLoader.load(LocalizadorRecursos.class.getResource("vistas/PaginaPrincipal.fxml"));
 			
-			Scene scene = new Scene(root);
-			//scene.getStylesheets().add(LocalizadorRecursos.class.getResource("estilos/estilos.css").toExternalForm());
+			FXMLLoader abrePaginaPrincipal = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/PaginaPrincipal.fxml"));
+			VBox panelPaginaPrincipal = abrePaginaPrincipal.load();
+			
+			ControladorPaginaPrincipal controladorPaginaPrincipal = abrePaginaPrincipal.getController();
+			controladorPaginaPrincipal.setControladorMVC(controladorMVC);
+		
+			Scene scene = new Scene(panelPaginaPrincipal);
 			Principal.setScene(scene);
 			Principal.setTitle("Gestión IES AL-ANDALUS");
 			Principal.setOnCloseRequest(e -> confirmarSalida(Principal, e));

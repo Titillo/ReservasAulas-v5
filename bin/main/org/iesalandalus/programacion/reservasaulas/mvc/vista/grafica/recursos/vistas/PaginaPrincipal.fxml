@@ -29,19 +29,6 @@
         <tabs>
           <Tab text="Aulas">
                <content>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-               </content>
-               <content>
                   <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
@@ -55,18 +42,18 @@
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
                            <children>
-                              <Button fx:id="bntInsertarAula" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarAula" text="Insertar" />
-                              <Button fx:id="bntBorrarAula" layoutX="76.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarAula" text="Borrar" />
-                              <Button fx:id="bntDisponibleAula" layoutX="480.0" layoutY="10.0" mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad" />
-                              <Button fx:id="bntListarAula" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarAula" text="Listar" />
-                              <Button fx:id="bntReservasAula" layoutX="384.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasAula" text="Reservas" />
+                              <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarAula" text="Insertar" />
+                              <Button layoutX="102.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarAula" text="Borrar" />
+                              <Button layoutX="480.0" layoutY="10.0" mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad" />
+                              <Button layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarAula" text="Listar" />
+                              <Button layoutX="384.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasAula" text="Reservas" />
                            </children></AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView prefHeight="221.0" prefWidth="600.0">
+                              <TableView fx:id="tvAula" layoutY="-1.0" prefHeight="229.0" prefWidth="600.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn fx:id="colNombreAula" prefWidth="108.0" text="Nombre" />
+                                  <TableColumn fx:id="colPuestosAula" prefWidth="98.0" text="Puestos" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>
@@ -89,18 +76,19 @@
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
                            <children>
-                              <Button fx:id="bntInsertarProfesor" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar" />
-                              <Button fx:id="bntBorrarProfesor" layoutX="76.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar" />
-                              <Button fx:id="bntListarProfesor" layoutX="355.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarProfesor" text="Listar" />
-                              <Button fx:id="bntReservasProfesor" layoutX="479.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasProfesor" text="Reservas" />
+                              <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar" />
+                              <Button layoutX="102.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar" />
+                              <Button layoutX="355.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarProfesor" text="Listar" />
+                              <Button layoutX="479.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasProfesor" text="Reservas" />
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView prefHeight="221.0" prefWidth="600.0">
+                              <TableView fx:id="tvProfesor" prefHeight="221.0" prefWidth="600.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
+                                    <TableColumn fx:id="colNombreProf" prefWidth="75.0" text="Nombre" />
+                                    <TableColumn fx:id="colCorreoProf" prefWidth="75.0" text="Correo" />
+                                    <TableColumn fx:id="colTelefonoProf" prefWidth="75.0" text="Teléfono" />
                                  </columns>
                               </TableView>
                            </children>
@@ -124,17 +112,23 @@
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
                            <children>
-                              <Button fx:id="bntInsertarReserva" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarReserva" text="Insertar" />
-                              <Button fx:id="bntBorrarReserva" layoutX="76.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarReserva" text="Borrar" />
-                              <Button fx:id="bntListarReserva" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarReserva" text="Listar" />
+                              <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarReserva" text="Insertar" />
+                              <Button layoutX="102.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarReserva" text="Borrar" />
+                              <Button layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarReserva" text="Listar" />
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView prefHeight="221.0" prefWidth="600.0">
+                              <TableView fx:id="tvReserva" layoutX="8.0" layoutY="7.0" prefHeight="221.0" prefWidth="600.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
+                                    <TableColumn fx:id="colNombreReserva" prefWidth="75.0" text="Nombre" />
+                                    <TableColumn fx:id="colCorreoReserva" prefWidth="98.0" text="Correo" />
+                                    <TableColumn fx:id="colTelefonoReserva" prefWidth="66.0" text="Teléfono" />
+                                    <TableColumn fx:id="colAulaReserva" prefWidth="55.0" text="Aula" />
+                                    <TableColumn fx:id="colPuestosReserva" prefWidth="67.0" text="Puestos" />
+                                    <TableColumn fx:id="colTramoReserva" prefWidth="81.0" text="Tramo/Hora" />
+                                    <TableColumn fx:id="colFechaReserva" minWidth="8.0" prefWidth="73.0" text="Fecha" />
+                                    <TableColumn fx:id="colPuntosReserva" prefWidth="85.0" text="Puntos" />
                                  </columns>
                               </TableView>
                            </children>
