@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.LocalizadorRecursos;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.utilidades.Dialogos;
 
@@ -16,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,18 +26,22 @@ import javafx.fxml.FXMLLoader;
 public class ControladorPaginaPrincipal {
 	
 	private IControlador controladorMVC;
-	private ObservableList<String> aula = FXCollections.observableArrayList();;
 	
-	@FXML private TableView<String> tvAula;
-	@FXML private TableColumn<String, String> colNombreAula;
-	@FXML private TableColumn<String, String> colPuestosAula;
-	
+	private ObservableList<Aula> ListaAula = FXCollections.observableArrayList();
+	private ObservableList<Profesor> ListaProfesor = FXCollections.observableArrayList();
+	private ObservableList<Reserva> ListaReserva = FXCollections.observableArrayList();
 	
 	
-	@FXML private TableView<String> tvProfesor;
-	@FXML private TableColumn<String, String> colNombreProf;
-	@FXML private TableColumn<String, String> colCorreoProf;
-	@FXML private TableColumn<String, String> colTelefonoProf;
+	@FXML private TableView<Aula> tvAula;
+	@FXML private TableColumn<Aula, String> colNombreAula;
+	@FXML private TableColumn<Aula, String> colPuestosAula;
+	
+	
+	
+	@FXML private TableView<Profesor> tvProfesor;
+	@FXML private TableColumn<Profesor, String> colNombreProf;
+	@FXML private TableColumn<Profesor, String> colCorreoProf;
+	@FXML private TableColumn<Profesor, String> colTelefonoProf;
 	
 	@FXML private TableView<String> tvReserva;
 	@FXML private TableColumn<String, String> colNombreReserva;
@@ -72,6 +77,20 @@ public class ControladorPaginaPrincipal {
 	}
 	
 	//Insertar 
+	@FXML
+	private void initialize() {
+		//Aula
+		tvAula.setItems(ListaAula);
+		colNombreAula.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getNombre()));
+		colPuestosAula.setCellValueFactory(aula -> new SimpleStringProperty(String.valueOf(aula.getValue().getPuestos())));
+		
+		//Profesor
+		tvProfesor.setItems(ListaProfesor);
+		colNombreProf.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getNombre()));
+		colCorreoProf.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getCorreo()));
+		colTelefonoProf.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getTelefono()));
+		
+	}
 	
 	@FXML
 	void insertarAula (ActionEvent event) throws IOException {
@@ -95,12 +114,34 @@ public class ControladorPaginaPrincipal {
 	
 	@FXML
 	void borrarAula (ActionEvent event) throws IOException {
-		
-		
+		Aula aula=null;
+		try {
+			aula=tvAula.getSelectionModel().getSelectedItem();
+			if(aula != null && Dialogos.mostrarDialogoConfirmacion("Borrar Aula", "¿Deseas borrar esta Aula?", null)) {
+				controladorMVC.borrarAula(aula);
+				ListaAula.remove(aula);
+				Dialogos.mostrarDialogoInformacion("Borrar Aula", "Aula borrada correctamente");
+				
+			}
+		}catch (Exception e) {
+			Dialogos.mostrarDialogoError("Borrar Aula", e.getMessage());
+		}
 	}
 	
 	@FXML
 	void borrarProfesor (ActionEvent event) throws IOException {
+		Profesor profesor=null;
+		try {
+			profesor=tvProfesor.getSelectionModel().getSelectedItem();
+			if(profesor != null && Dialogos.mostrarDialogoConfirmacion("Borrar Profesor", "¿Deseas borrar este Profesor?", null)) {
+				controladorMVC.borrarProfesor(profesor);
+				ListaProfesor.remove(profesor);
+				Dialogos.mostrarDialogoInformacion("Borrar Profesor", "Profesor borrado correctamente");
+				
+			}
+		}catch (Exception e) {
+			Dialogos.mostrarDialogoError("Borrar Profesor", e.getMessage());
+		}
 		
 		
 	}
@@ -115,22 +156,12 @@ public class ControladorPaginaPrincipal {
 	
 	@FXML
 	void listarAula (ActionEvent event) throws IOException {
-		tvAula.setItems(aula);
-		aula.addAll(controladorMVC.representarAulas());
-	
-		colNombreAula.setCellValueFactory(new PropertyValueFactory<>("Nombre="));
-		
-		colPuestosAula.setCellValueFactory(new PropertyValueFactory<>(", Puestos="));
+		ListaAula.setAll(controladorMVC.getAulas());
 	}
 	
 	@FXML
 	void listarProfesor (ActionEvent event) throws IOException {
-		
-		tvProfesor.setItems(FXCollections.observableArrayList(controladorMVC.representarProfesores()));
-
-		colNombreProf.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().substring(nombre.getValue().indexOf("Nombre =") + 7, nombre.getValue().indexOf(", Correo =") + 7)));
-		colCorreoProf.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().substring(nombre.getValue().indexOf("Nombre =") + 7, nombre.getValue().indexOf(", Correo =") + 7)));
-		//colTelefonoProf.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().);
+		ListaProfesor.setAll(controladorMVC.getProfesores());
 	}
 	@FXML
 	void listarReserva (ActionEvent event) throws IOException {
@@ -161,12 +192,6 @@ public class ControladorPaginaPrincipal {
 		
 		
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	

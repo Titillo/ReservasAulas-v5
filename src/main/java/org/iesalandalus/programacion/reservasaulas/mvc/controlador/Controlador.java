@@ -161,5 +161,19 @@ public class Controlador implements IControlador {
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
 		return modelo.consultarDisponibilidad(aula, permanencia);
 	}
-
+	
+	@Override
+	public List<Profesor> getProfesores() {
+		return modelo.getProfesores();
+	}
+	@Override
+	public List<Aula> getAulas(){
+		return modelo.getAulas();
+	}
+	@Override
+	public List<Reserva> getReservas() {
+		return modelo.getReservas();
+	}
+	
+	
 }

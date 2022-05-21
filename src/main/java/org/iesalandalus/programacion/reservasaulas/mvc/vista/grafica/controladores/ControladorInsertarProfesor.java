@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 
 public class ControladorInsertarProfesor {
 	
-	private static final String ER_NOMBRE = "[A-Za-z].+";
-	private static final String ER_CORREO = "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\\\.[a-zA-Z0-9-]+)+";
+	private static final String ER_NOMBRE = "^([A-Z¡…Õ”⁄]{1}[a-zÒ·ÈÌÛ˙]+[\\s]*)+$";
+	private static final String ER_CORREO = "^[\\w]+@{1}[\\w]+\\.[a-z]{2,3}$";
 	private static final String ER_TELEFONO = "[6]{1}[0-9]{8}";
 	
 	private IControlador controladorMVC;
@@ -52,7 +52,7 @@ public class ControladorInsertarProfesor {
     	tfCorreo.setText("");
     	compruebaCampoTexto(ER_CORREO, tfCorreo);
     	tfTelefono.setText("");
-    	compruebaCampoTexto(ER_CORREO, tfTelefono);
+    	compruebaCampoTexto(ER_TELEFONO, tfTelefono);
     }
 	
 	

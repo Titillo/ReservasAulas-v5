@@ -29,4 +29,10 @@ public interface IControlador {
 	public List<Reserva> getReservasPermanencia(Permanencia permanencia);
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia);
 	
+	public List<Profesor> getProfesores();
+	
+	public List<Aula> getAulas();
+	
+	public List<Reserva> getReservas();
+	
 }

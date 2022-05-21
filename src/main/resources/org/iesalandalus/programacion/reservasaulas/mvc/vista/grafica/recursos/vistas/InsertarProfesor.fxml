@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="497.0" styleClass="vbox" stylesheets="@../estilos/bootstrap3.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorInsertarProfesor">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="452.0" styleClass="vbox" stylesheets="@../estilos/bootstrap3.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorInsertarProfesor">
    <children>
-      <GridPane prefHeight="195.0" prefWidth="514.0">
+      <GridPane prefHeight="186.0" prefWidth="409.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="167.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="433.0" />
@@ -25,11 +25,11 @@
          </rowConstraints>
          <children>
             <Label text="Nombre" />
-            <Label text="Teéfono" GridPane.rowIndex="1" />
-            <Label text="Correo" GridPane.rowIndex="2" />
+            <Label text="Teléfono" GridPane.rowIndex="2" />
+            <Label text="Correo" GridPane.rowIndex="1" />
             <TextField fx:id="tfNombre" GridPane.columnIndex="1" />
-            <TextField fx:id="tfTelefono" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfCorreo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfCorreo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfTelefono" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Button fx:id="bntAceptar" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />
