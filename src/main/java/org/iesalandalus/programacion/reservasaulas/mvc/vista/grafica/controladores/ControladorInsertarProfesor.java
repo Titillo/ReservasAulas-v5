@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class ControladorInsertarProfesor {
 	
-	private static final String ER_NOMBRE = "[A-Za-z]+";
+	private static final String ER_NOMBRE = "[A-Za-z].+";
 	private static final String ER_CORREO = "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\\\.[a-zA-Z0-9-]+)+";
 	private static final String ER_TELEFONO = "[6]{1}[0-9]{8}";
 	

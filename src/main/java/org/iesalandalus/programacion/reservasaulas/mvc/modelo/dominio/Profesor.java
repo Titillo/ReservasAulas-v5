@@ -154,7 +154,7 @@ public class Profesor implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Profesor: [nombre =" + nombre + ", correo =" + correo + ", telefono =" + telefono + " ]";
+		return "Nombre =" + nombre + ", Correo =" + correo + ", Telefono =" + telefono;
 	}
 	
 	

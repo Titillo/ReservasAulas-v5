@@ -9,7 +9,7 @@ public class Aula implements Serializable{
 	 */
 	private static final float PUNTOS_POR_PUESTO = 0.5f;
 	private static final int MN_PUESTOS = 10;
-	private static final int MAX_PUESTOS = 50;
+	private static final int MAX_PUESTOS = 100;
 	
 	private String nombre;
 	private int puestos;
@@ -27,6 +27,7 @@ public class Aula implements Serializable{
 			throw new NullPointerException("ERROR: El nombre del aula no puede ser nulo.");
 		
 		setNombre(aula.nombre);
+		setPuestos(aula.getPuestos());
 	}
 
 	/*
@@ -101,7 +102,7 @@ public class Aula implements Serializable{
 
 	@Override
 	public String toString() {
-		return "nombre= " + nombre + ", puestos=" + puestos;
+		return "Nombre="+nombre+", Puestos="+puestos;
 	}
 	
 	

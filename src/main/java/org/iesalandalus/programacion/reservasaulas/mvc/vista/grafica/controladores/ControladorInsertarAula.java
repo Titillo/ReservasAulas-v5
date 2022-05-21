@@ -11,10 +11,11 @@ import javafx.stage.Stage;
 
 public class ControladorInsertarAula {
 	
-	private static final String ER_NOMBRE = "[A-Za-z-0-9]+";
+	private static final String ER_NOMBRE = "[A-Za-z-0-9].+";
 	private static final String ER_PUESTOS = "[0-99]{1,2}"; 
 
 	private IControlador controladorMVC;
+	
 	@FXML private TextField tfNombre;
 	@FXML private TextField tfPuestos;
 	
@@ -34,6 +35,7 @@ public class ControladorInsertarAula {
 	private Aula getAulas() {
 		String nombre = tfNombre.getText();
 		int puestos = Integer.parseInt(tfPuestos.getText());
+		
 		return new Aula(nombre, puestos);
 	}
 	
@@ -56,7 +58,6 @@ public class ControladorInsertarAula {
 			aula = getAulas();
 			controladorMVC.insertarAula(aula);
 			Stage aceptar = ((Stage) bntAceptar.getScene().getWindow());
-			
 			Dialogos.mostrarDialogoInformacion("Insertar Aula", "Aula insertada correctamente", aceptar);
 		}catch(Exception e) {
 			Dialogos.mostrarDialogoError("Insertar Aula", e.getMessage());

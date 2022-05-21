@@ -2,11 +2,9 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controlado
 
 
 import java.io.IOException;
+
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros.Aulas;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.LocalizadorRecursos;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.utilidades.Dialogos;
 
@@ -27,9 +25,8 @@ import javafx.fxml.FXMLLoader;
 public class ControladorPaginaPrincipal {
 	
 	private IControlador controladorMVC;
-	    
+	private ObservableList<String> aula = FXCollections.observableArrayList();;
 	
-	private ObservableList<String> ListAula = FXCollections.observableArrayList();
 	@FXML private TableView<String> tvAula;
 	@FXML private TableColumn<String, String> colNombreAula;
 	@FXML private TableColumn<String, String> colPuestosAula;
@@ -58,8 +55,7 @@ public class ControladorPaginaPrincipal {
  	private ControladorInsertarProfesor controladorInserProfesor;
  	private Stage insertaReserva;
 	private ControladorInsertarReserva controladorInserReserva;
-	
-	private Aulas representaAulas;
+
 	
 	
 	public void setControladorMVC(IControlador controladorMVC) {
@@ -119,20 +115,22 @@ public class ControladorPaginaPrincipal {
 	
 	@FXML
 	void listarAula (ActionEvent event) throws IOException {
-		
-		
-		tvAula.setItems(FXCollections.observableArrayList(controladorMVC.representarAulas()));
-		
-		colNombreAula.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().substring(nombre.getValue().indexOf("nombre=") + 7, nombre.getValue().indexOf(", puestos="))));
-		colPuestosAula.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().substring(nombre.getValue().lastIndexOf(", puestos=") + 10)));
-		
+		tvAula.setItems(aula);
+		aula.addAll(controladorMVC.representarAulas());
 	
-	
+		colNombreAula.setCellValueFactory(new PropertyValueFactory<>("Nombre="));
+		
+		colPuestosAula.setCellValueFactory(new PropertyValueFactory<>(", Puestos="));
 	}
 	
 	@FXML
 	void listarProfesor (ActionEvent event) throws IOException {
 		
+		tvProfesor.setItems(FXCollections.observableArrayList(controladorMVC.representarProfesores()));
+
+		colNombreProf.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().substring(nombre.getValue().indexOf("Nombre =") + 7, nombre.getValue().indexOf(", Correo =") + 7)));
+		colCorreoProf.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().substring(nombre.getValue().indexOf("Nombre =") + 7, nombre.getValue().indexOf(", Correo =") + 7)));
+		//colTelefonoProf.setCellValueFactory(nombre -> new SimpleStringProperty(nombre.getValue().);
 	}
 	@FXML
 	void listarReserva (ActionEvent event) throws IOException {
