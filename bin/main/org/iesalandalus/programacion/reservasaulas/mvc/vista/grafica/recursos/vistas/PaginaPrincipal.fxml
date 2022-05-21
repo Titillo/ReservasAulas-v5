@@ -119,7 +119,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView fx:id="tvReserva" layoutX="8.0" layoutY="7.0" prefHeight="221.0" prefWidth="600.0">
+                              <TableView fx:id="tvReserva" layoutX="-2.0" layoutY="-1.0" prefHeight="229.0" prefWidth="610.0">
                                  <columns>
                                     <TableColumn fx:id="colNombreReserva" prefWidth="75.0" text="Nombre" />
                                     <TableColumn fx:id="colCorreoReserva" prefWidth="98.0" text="Correo" />

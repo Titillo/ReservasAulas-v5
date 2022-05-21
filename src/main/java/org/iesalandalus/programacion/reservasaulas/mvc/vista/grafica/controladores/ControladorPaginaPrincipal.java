@@ -106,8 +106,8 @@ public class ControladorPaginaPrincipal {
 	}
 	@FXML
 	void insertarReserva (ActionEvent event) throws IOException {
-		
-		
+		insertaNuevaReserva();
+		insertaReserva.showAndWait();
 	}
 	
 	//Borrar
@@ -240,7 +240,27 @@ public class ControladorPaginaPrincipal {
 		
 	}
 	
-	
+	private void insertaNuevaReserva() throws IOException {
+		if(insertaReserva ==null) {
+			insertaReserva = new Stage();
+			
+			FXMLLoader abreInsertaReserva = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/InsertarReserva.fxml"));
+			VBox panelInsertaReserva = abreInsertaReserva.load();
+			
+			controladorInserReserva=abreInsertaReserva.getController();
+			controladorInserReserva.setControladorMVC(controladorMVC);
+			controladorInserReserva.inicializa();
+			
+			Scene escenaInsertaReserva = new Scene(panelInsertaReserva);
+			insertaReserva.setTitle("Inserta Reserva");
+			insertaReserva.setScene(escenaInsertaReserva);
+			insertaReserva.initModality(Modality.APPLICATION_MODAL);
+			insertaReserva.setResizable(false);
+			
+		}else {
+			controladorInserProfesor.inicializa();
+		}
+	}
 
 		
 	

@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
 public enum Tramo {
 
-	MANANA("Horario MaÃ±ana"), TARDE("Horario Tarde");
+	MANANA("Horario Mañana"), TARDE("Horario Tarde");
 	
 	//Atributo
 	
@@ -21,6 +21,6 @@ public enum Tramo {
 	 */
 	
 	public String toString() {
-		return "Cadena: "+cadenaAMostrar;
+		return cadenaAMostrar;
 	}
 }
