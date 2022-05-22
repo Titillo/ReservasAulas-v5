@@ -7,7 +7,6 @@ import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.Lo
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
@@ -54,39 +53,6 @@ public class Dialogos {
 		Dialogos.mostrarDialogoError(titulo, contenido, null);
 
 	}
-	
-	// Dialogo comprobar disponibilidad
-		public static void mostrarDialogoDisponibilidad(String titulo, String contenido, Image image, Stage propietario) {
-			Alert dialogo = new Alert(AlertType.INFORMATION);
-			dialogo.getDialogPane().getStylesheets().add(LocalizadorRecursos.class.getResource(CSS).toExternalForm());
-			((Button) dialogo.getDialogPane().lookupButton(ButtonType.OK)).setId(ID_BT_ACEPTAR);
-			dialogo.setTitle(titulo);
-
-			ImageView imageView = new ImageView(image);
-			 imageView.setFitHeight( 60);
-		        imageView.setFitWidth(60);
-
-			dialogo.setGraphic(imageView);
-
-			((Stage) dialogo.getDialogPane().getScene().getWindow()).getIcons()
-					.add(new Image(LocalizadorRecursos.class.getResourceAsStream("imagenes/logo-ies.png")));
-
-			dialogo.setHeaderText(null);
-			dialogo.setContentText(contenido);
-			if (propietario != null) {
-				dialogo.initModality(Modality.APPLICATION_MODAL);
-				dialogo.initOwner(propietario);
-			}
-			dialogo.showAndWait();
-			if (propietario != null)
-				propietario.close();
-		}
-
-		// Dialogo comprobar disponibilidad
-		public static void mostrarDialogoDisponibilidad(String titulo, String contenido, Image image) {
-			Dialogos.mostrarDialogoDisponibilidad(titulo, contenido, image, null);
-		}
-
 
 	public static void mostrarDialogoInformacion(String titulo, String contenido, Stage propietario) {
 		Alert dialogo = new Alert(AlertType.INFORMATION);

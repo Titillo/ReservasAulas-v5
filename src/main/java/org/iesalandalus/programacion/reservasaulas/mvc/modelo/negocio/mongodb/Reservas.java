@@ -6,6 +6,7 @@ import static com.mongodb.client.model.Filters.eq;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
@@ -234,8 +235,31 @@ public class Reservas implements IReservas {
 
 	@Override
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean disponible = true;
+
+		if (aula == null) 
+			throw new NullPointerException("ERROR: No se puede consultar la disponibilidad de un aula nula.");
+		if (permanencia == null) 
+			throw new NullPointerException("ERROR: No se puede consultar la disponibilidad de una permanencia nula.");
+
+		for (Iterator<Reserva> it = getReservas().iterator(); it.hasNext();) {
+			Reserva reserva = it.next();
+			if ((reserva.getPermanencia() instanceof PermanenciaPorTramo && permanencia instanceof PermanenciaPorHora
+					|| reserva.getPermanencia() instanceof PermanenciaPorHora
+					&& permanencia instanceof PermanenciaPorTramo)
+					&& (reserva.getAula().equals(aula)
+							&& reserva.getPermanencia().getDia().equals(permanencia.getDia()))) {
+				disponible = false;
+			}else if ((reserva.getPermanencia() instanceof PermanenciaPorTramo
+					&& permanencia instanceof PermanenciaPorTramo
+					|| reserva.getPermanencia() instanceof PermanenciaPorHora
+					&& permanencia instanceof PermanenciaPorHora)
+					&& (reserva.getAula().equals(aula) && reserva.getPermanencia().equals(permanencia))) {
+				disponible = false;
+			}
+		}
+
+		return disponible;
 	}
 
 }

@@ -121,8 +121,10 @@ public class ControladorInsertarReserva {
 	private void accionTramo() {
 		if (cbElegirTramo.getValue().equals("Tramo dia")) {
 			cbTramoDia.setDisable(false);
+			tfTramoHora.setDisable(true);
 		}else if(cbElegirTramo.getValue().equals("Tramo hora")){
 			tfTramoHora.setDisable(false);
+			cbTramoDia.setDisable(true);
 		}
 	}
 	

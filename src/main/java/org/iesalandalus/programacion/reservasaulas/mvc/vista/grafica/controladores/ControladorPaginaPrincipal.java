@@ -16,6 +16,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
@@ -35,7 +37,8 @@ public class ControladorPaginaPrincipal {
 	@FXML private TableColumn<Aula, String> colNombreAula;
 	@FXML private TableColumn<Aula, String> colPuestosAula;
 	
-	
+	@FXML private TabPane tabPanel;
+	@FXML private Tab tpReservas;
 	
 	@FXML private TableView<Profesor> tvProfesor;
 	@FXML private TableColumn<Profesor, String> colNombreProf;
@@ -59,6 +62,8 @@ public class ControladorPaginaPrincipal {
  	private ControladorInsertarProfesor controladorInserProfesor;
  	private Stage insertaReserva;
 	private ControladorInsertarReserva controladorInserReserva;
+	private Stage consultarDisponibilidad;
+	private ControladorDisponibleAula controladorConsultarDisponibilidad;
 
 	
 	
@@ -190,14 +195,25 @@ public class ControladorPaginaPrincipal {
 		
 	}
 		
+	@FXML
+	void reservasProfesores (ActionEvent event) throws IOException {
+		tabPanel.getSelectionModel().select(tpReservas);
+		
+	}
+	@FXML
+	void reservasAulas (ActionEvent event) throws IOException {
+		tabPanel.getSelectionModel().select(tpReservas);
+		
+	}
+
 	
 	
 	//Disponibilidad
 	
 	@FXML
 	void disponibleAula (ActionEvent event) throws IOException {
-		
-		
+		ventanaDisponibilidad();
+		consultarDisponibilidad.showAndWait();
 	}
 	
 	
@@ -269,7 +285,25 @@ public class ControladorPaginaPrincipal {
 		}
 	}
 
-		
-	
-
+	private void ventanaDisponibilidad() throws IOException {
+		if(consultarDisponibilidad ==null) {
+			consultarDisponibilidad = new Stage();
+			
+			FXMLLoader abreConsultarDisponibilidad = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/DisponibleAula.fxml"));
+			VBox panelConsultarDisponibilidad = abreConsultarDisponibilidad.load();
+			
+			controladorConsultarDisponibilidad=abreConsultarDisponibilidad.getController();
+			controladorConsultarDisponibilidad.setControladorMVC(controladorMVC);
+			controladorConsultarDisponibilidad.inicializa();
+			
+			Scene escenaConsultarDisponibilidad = new Scene(panelConsultarDisponibilidad);
+			consultarDisponibilidad.setTitle("Inserta Reserva");
+			consultarDisponibilidad.setScene(escenaConsultarDisponibilidad);
+			consultarDisponibilidad.initModality(Modality.APPLICATION_MODAL);
+			consultarDisponibilidad.setResizable(false);
+			
+		}else {
+			controladorConsultarDisponibilidad.inicializa();
+		}
+	}
 }

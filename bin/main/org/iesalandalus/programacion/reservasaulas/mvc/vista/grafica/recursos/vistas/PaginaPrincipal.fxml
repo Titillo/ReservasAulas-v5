@@ -27,7 +27,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane prefHeight="436.0" prefWidth="807.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPanel" prefHeight="436.0" prefWidth="807.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Aulas">
                <content>
@@ -48,6 +48,7 @@
                               <Button mnemonicParsing="false" onAction="#borrarAula" text="Borrar" />
                               <Button mnemonicParsing="false" onAction="#listarAula" text="Listar" />
                               <Button mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad" />
+                              <Button mnemonicParsing="false" onAction="#reservasAulas" text="Reservas" />
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -84,6 +85,7 @@
                               <Button mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar" />
                               <Button mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar" />
                               <Button mnemonicParsing="false" onAction="#listarProfesor" text="Listar" />
+                              <Button mnemonicParsing="false" onAction="#reservasProfesores" text="Reservas" />
                            </children>
                         </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
@@ -101,7 +103,7 @@
                   </SplitPane>
                </content>
           </Tab>
-            <Tab text="Rerservas">
+            <Tab fx:id="tpReservas" text="Rerservas">
                <content>
                   <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                      <items>

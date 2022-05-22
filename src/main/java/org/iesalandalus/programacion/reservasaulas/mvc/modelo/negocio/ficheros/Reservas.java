@@ -387,15 +387,32 @@ public class Reservas implements IReservas{
 	 */
 	@Override
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
-		boolean disponible=true;
-		
-		Iterator<Reserva> it = coleccionReservas.iterator();
-		while(it.hasNext()){
-			if(it.next().getAula().equals(aula) && it.next().getPermanencia().equals(permanencia)) {
-				disponible=false;
+		if (aula == null) {
+			throw new NullPointerException("ERROR: No se puede consultar la disponibilidad de un aula nula.");
+		} else if (permanencia == null) {
+			throw new NullPointerException("ERROR: No se puede consultar la disponibilidad de una permanencia nula.");
+		}
+		boolean disponible = true;
+		Iterator<Reserva> iterador = coleccionReservas.iterator();
+		while (iterador.hasNext()) {
+			Reserva auxiliar = iterador.next();
+			if (!esMesSiguienteOPosterior(Reserva.getReservaFicticia(aula, permanencia))) {
+				disponible = false;
+			} else if (aula.equals(auxiliar.getAula()) && permanencia.getDia().equals(auxiliar.getPermanencia().getDia())) {
+				if ((permanencia instanceof PermanenciaPorHora && auxiliar.getPermanencia() instanceof PermanenciaPorTramo)
+						|| (permanencia instanceof PermanenciaPorTramo && auxiliar.getPermanencia() instanceof PermanenciaPorHora)) {
+					disponible = false;
+				} else if (permanencia instanceof PermanenciaPorHora && auxiliar.getPermanencia() instanceof PermanenciaPorHora) {
+					if (((PermanenciaPorHora) permanencia).getHora().equals(((PermanenciaPorHora) auxiliar.getPermanencia()).getHora())) {
+						disponible = false;
+					}
+				} else if (permanencia instanceof PermanenciaPorTramo&& auxiliar.getPermanencia() instanceof PermanenciaPorTramo) {
+					if (((PermanenciaPorTramo) permanencia).getTramo().equals(((PermanenciaPorTramo) auxiliar.getPermanencia()).getTramo())) {
+						disponible = false;
+					}
+				}
 			}
 		}
-		
 		return disponible;
 	}
 
