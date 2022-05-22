@@ -220,8 +220,6 @@ public class Reservas implements IReservas {
 		}
 	}
 
-	
-
 	@Override
 	public List<String> representar() {
 		// TODO Auto-generated method stub
