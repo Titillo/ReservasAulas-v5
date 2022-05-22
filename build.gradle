@@ -28,12 +28,18 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
+    // Uso de Mockito
+    testCompile "org.mockito:mockito-inline:+"
+
+	// MogoDB Driver
+    compile 'org.mongodb:mongodb-driver-sync:4.6.0'
 }
 
 //Añadido por mí
 apply plugin: 'application'
 
 javafx {
+version = "18.0.1"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
