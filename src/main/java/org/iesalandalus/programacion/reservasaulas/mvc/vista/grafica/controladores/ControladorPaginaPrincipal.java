@@ -29,8 +29,7 @@ public class ControladorPaginaPrincipal {
 	
 	private ObservableList<Aula> ListaAula = FXCollections.observableArrayList();
 	private ObservableList<Profesor> ListaProfesor = FXCollections.observableArrayList();
-	private ObservableList<Reserva> ListaReserva = FXCollections.observableArrayList();
-	
+	private ObservableList<Reserva> ListaReserva = FXCollections.observableArrayList();	
 	
 	@FXML private TableView<Aula> tvAula;
 	@FXML private TableColumn<Aula, String> colNombreAula;
@@ -43,15 +42,15 @@ public class ControladorPaginaPrincipal {
 	@FXML private TableColumn<Profesor, String> colCorreoProf;
 	@FXML private TableColumn<Profesor, String> colTelefonoProf;
 	
-	@FXML private TableView<String> tvReserva;
-	@FXML private TableColumn<String, String> colNombreReserva;
-	@FXML private TableColumn<String, String> colCorreoReserva;
-	@FXML private TableColumn<String, String> colTelefonoReserva;
-	@FXML private TableColumn<String, String> colAulaReserva;
-	@FXML private TableColumn<String, String> colPuestosReserva;
-	@FXML private TableColumn<String, String> colTramoReserva;
-	@FXML private TableColumn<String, String> colPuntosReserva;
-	@FXML private TableColumn<String, String> colFechaReserva;
+	@FXML private TableView<Reserva> tvReserva;
+	@FXML private TableColumn<Reserva, String> colNombreReserva;
+	@FXML private TableColumn<Reserva, String> colCorreoReserva;
+	@FXML private TableColumn<Reserva, String> colTelefonoReserva;
+	@FXML private TableColumn<Reserva, String> colAulaReserva;
+	@FXML private TableColumn<Reserva, String> colPuestosReserva;
+	@FXML private TableColumn<Reserva, String> colTramoReserva;
+	@FXML private TableColumn<Reserva, String> colPuntosReserva;
+	@FXML private TableColumn<Reserva, String> colFechaReserva;
 	
 	
 	private Stage insertaAula;
@@ -86,9 +85,20 @@ public class ControladorPaginaPrincipal {
 		
 		//Profesor
 		tvProfesor.setItems(ListaProfesor);
-		colNombreProf.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getNombre()));
-		colCorreoProf.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getCorreo()));
-		colTelefonoProf.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getTelefono()));
+		colNombreProf.setCellValueFactory(profesor -> new SimpleStringProperty(profesor.getValue().getNombre()));
+		colCorreoProf.setCellValueFactory(profesor -> new SimpleStringProperty(profesor.getValue().getCorreo()));
+		colTelefonoProf.setCellValueFactory(profesor -> new SimpleStringProperty(profesor.getValue().getTelefono()));
+		
+		//reservas
+		tvReserva.setItems(ListaReserva);
+		colNombreReserva.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getProfesor().getNombre()));
+		colCorreoReserva.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getProfesor().getCorreo()));
+		colTelefonoReserva.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getProfesor().getTelefono()));
+		colAulaReserva.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getAula().getNombre()));
+		colPuestosReserva.setCellValueFactory(reserva -> new SimpleStringProperty(String.valueOf(reserva.getValue().getAula().getPuestos())));
+		colTramoReserva.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getPermanencia().toString()));
+		colPuntosReserva.setCellValueFactory(reserva -> new SimpleStringProperty(String.valueOf(reserva.getValue().getPuntos())));
+		colFechaReserva.setCellValueFactory(reserva -> new SimpleStringProperty(String.valueOf(reserva.getValue().getPermanencia().getDia())));
 		
 	}
 	
@@ -147,7 +157,18 @@ public class ControladorPaginaPrincipal {
 	}
 	@FXML
 	void borrarReserva (ActionEvent event) throws IOException {
-		
+		Reserva reserva = null;
+		try {
+			reserva=tvReserva.getSelectionModel().getSelectedItem();
+			if(reserva != null && Dialogos.mostrarDialogoConfirmacion("Borrar Reserva", "¿Deseas borrar esta Reserva?", null)) {
+				controladorMVC.anularReserva(reserva);
+				ListaReserva.remove(reserva);
+				Dialogos.mostrarDialogoInformacion("Borrar Reserva", "Reserva borrada correctamente");
+				
+			}
+		}catch(Exception e) {
+			Dialogos.mostrarDialogoError("Borrar Reserva", e.getMessage());
+		}
 		
 	}
 	
@@ -165,25 +186,11 @@ public class ControladorPaginaPrincipal {
 	}
 	@FXML
 	void listarReserva (ActionEvent event) throws IOException {
-		
-		
-	}
-	
-	
-	//Reservas
-	
-	
-	@FXML
-	void reservasAula (ActionEvent event) throws IOException {
-		
+		ListaReserva.setAll(controladorMVC.getReservas());
 		
 	}
+		
 	
-	@FXML
-	void reservasProfesor (ActionEvent event) throws IOException {
-		
-		
-	}
 	
 	//Disponibilidad
 	

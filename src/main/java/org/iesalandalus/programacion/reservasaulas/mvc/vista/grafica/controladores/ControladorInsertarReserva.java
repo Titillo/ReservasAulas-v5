@@ -18,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
@@ -34,14 +33,14 @@ public class ControladorInsertarReserva {
 	
 	private ObservableList<Aula> aulas = FXCollections.observableArrayList();
 	private ObservableList<Profesor> profesores = FXCollections.observableArrayList();
-	
+		
 	@FXML private ListView<Aula> listaAula;
 	@FXML private ListView<Profesor> listaProfesor;
 	
 	
 	@FXML private DatePicker dpFecha;
 	@FXML private ComboBox<Tramo> cbTramoDia;
-	@FXML private ChoiceBox<String> cbelegirTramo = new ChoiceBox<>();
+	@FXML private ComboBox<String> cbElegirTramo =  new ComboBox<>();
 	@FXML private TextField tfTramoHora;
 	
 	@FXML private Button bntAceptar;
@@ -80,7 +79,8 @@ public class ControladorInsertarReserva {
     @FXML
 	private void initialize() {
 		cbTramoDia.setItems(FXCollections.observableArrayList(Tramo.values()));
-		cbelegirTramo.setItems(FXCollections.observableArrayList("Tramo dia", "Tramo hora"));
+		cbElegirTramo.setItems(FXCollections.observableArrayList("Tramo dia", "Tramo hora"));
+		
 		
     	listaAula.setItems(aulas);
     	listaAula.setCellFactory(l -> new columnaAula());
@@ -88,9 +88,13 @@ public class ControladorInsertarReserva {
     	listaProfesor.setItems(profesores);
     	listaProfesor.setCellFactory(l -> new columnaProfesor());
     	
+    	
+    	tfTramoHora.setDisable(true);
     	tfTramoHora.textProperty().addListener((ob, ov, nv) -> compruebaCampoTexto(ER_HORA, tfTramoHora));
     	
+    	cbTramoDia.setDisable(true);
 	}
+    
         
     
     public void inicializa() {
@@ -103,14 +107,23 @@ public class ControladorInsertarReserva {
         listaProfesor.setItems(profesores);
     	dpFecha.setValue(LocalDate.now());
     	cbTramoDia.getSelectionModel().clearSelection();
-  
-    	
+    	cbElegirTramo.getSelectionModel().clearSelection();
+    	tfTramoHora.setDisable(true);
+    	cbTramoDia.setDisable(true);
     }
 
 	
 	@FXML
 	private void cerrar() {
 		((Stage) bntCerrar.getScene().getWindow()).close();
+	}
+	@FXML
+	private void accionTramo() {
+		if (cbElegirTramo.getValue().equals("Tramo dia")) {
+			cbTramoDia.setDisable(false);
+		}else if(cbElegirTramo.getValue().equals("Tramo hora")){
+			tfTramoHora.setDisable(false);
+		}
 	}
 	
 	@FXML
@@ -120,11 +133,9 @@ public class ControladorInsertarReserva {
 		try {
 			if (profesor != null) {
 				Permanencia permanencia;
-				if (cbelegirTramo.getValue()=="Tramo dia") {
-					tfTramoHora.setDisable(true);
+				if (tfTramoHora.isDisable()) {
 					permanencia = new PermanenciaPorTramo(dpFecha.getValue(), cbTramoDia.getValue());
 				} else {
-					cbTramoDia.setDisable(true);
 					permanencia = new PermanenciaPorHora(dpFecha.getValue(),LocalTime.parse(tfTramoHora.getText(), DateTimeFormatter.ofPattern("HH:mm")));
 				}
 				Reserva reserva = new Reserva(profesor, aula,permanencia);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -11,10 +12,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="vbox" stylesheets="@../estilos/bootstrap3.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorPaginaPrincipal">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="801.0" styleClass="vbox" stylesheets="@../estilos/bootstrap3.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorPaginaPrincipal">
    <children>
       <MenuBar>
         <menus>
@@ -25,32 +27,35 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane prefHeight="383.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="436.0" prefWidth="807.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Aulas">
                <content>
-                  <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.13784461152882205, 0.3208020050125313" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="245.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="154.0" layoutY="-3.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Aulas" textFill="#21eebe">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Aulas" textFill="#21eebe">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarAula" text="Insertar" />
-                              <Button layoutX="102.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarAula" text="Borrar" />
-                              <Button layoutX="480.0" layoutY="10.0" mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad" />
-                              <Button layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarAula" text="Listar" />
-                              <Button layoutX="384.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasAula" text="Reservas" />
-                           </children></AnchorPane>
+                              <Button mnemonicParsing="false" onAction="#insertarAula" text="Insertar" />
+                              <Button mnemonicParsing="false" onAction="#borrarAula" text="Borrar" />
+                              <Button mnemonicParsing="false" onAction="#listarAula" text="Listar" />
+                              <Button mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView fx:id="tvAula" layoutY="-1.0" prefHeight="229.0" prefWidth="600.0">
+                              <TableView fx:id="tvAula" layoutY="-1.0" prefHeight="275.0" prefWidth="808.0">
                                 <columns>
                                   <TableColumn fx:id="colNombreAula" prefWidth="108.0" text="Nombre" />
                                   <TableColumn fx:id="colPuestosAula" prefWidth="98.0" text="Puestos" />
@@ -63,28 +68,27 @@
           </Tab>
           <Tab text="Profesores">
                <content>
-                  <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.14536340852130325, 0.3333333333333333" orientation="VERTICAL" prefHeight="408.0" prefWidth="804.0">
                      <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="801.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="154.0" layoutY="-3.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Profesores" textFill="#ff738a">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="1.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Profesores" textFill="#ff738a">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar" />
-                              <Button layoutX="102.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar" />
-                              <Button layoutX="355.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarProfesor" text="Listar" />
-                              <Button layoutX="479.0" layoutY="10.0" mnemonicParsing="false" onAction="#reservasProfesor" text="Reservas" />
+                              <Button mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar" />
+                              <Button mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar" />
+                              <Button mnemonicParsing="false" onAction="#listarProfesor" text="Listar" />
                            </children>
-                        </AnchorPane>
+                        </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView fx:id="tvProfesor" prefHeight="221.0" prefWidth="600.0">
+                              <TableView fx:id="tvProfesor" layoutY="-6.0" prefHeight="276.0" prefWidth="807.0">
                                  <columns>
                                     <TableColumn fx:id="colNombreProf" prefWidth="75.0" text="Nombre" />
                                     <TableColumn fx:id="colCorreoProf" prefWidth="75.0" text="Correo" />
@@ -103,32 +107,32 @@
                      <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="154.0" layoutY="-3.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Reservas" textFill="#ebcc88">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="1.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Reservas" textFill="#ebcc88">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertarReserva" text="Insertar" />
-                              <Button layoutX="102.0" layoutY="10.0" mnemonicParsing="false" onAction="#borrarReserva" text="Borrar" />
-                              <Button layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#listarReserva" text="Listar" />
+                              <Button mnemonicParsing="false" onAction="#insertarReserva" text="Insertar" />
+                              <Button mnemonicParsing="false" onAction="#borrarReserva" text="Borrar" />
+                              <Button mnemonicParsing="false" onAction="#listarReserva" text="Listar" />
                            </children>
-                        </AnchorPane>
+                        </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView fx:id="tvReserva" layoutX="-2.0" layoutY="-1.0" prefHeight="229.0" prefWidth="610.0">
+                              <TableView fx:id="tvReserva" layoutX="-2.0" layoutY="-1.0" prefHeight="277.0" prefWidth="808.0">
                                  <columns>
-                                    <TableColumn fx:id="colNombreReserva" prefWidth="75.0" text="Nombre" />
-                                    <TableColumn fx:id="colCorreoReserva" prefWidth="98.0" text="Correo" />
-                                    <TableColumn fx:id="colTelefonoReserva" prefWidth="66.0" text="Teléfono" />
-                                    <TableColumn fx:id="colAulaReserva" prefWidth="55.0" text="Aula" />
-                                    <TableColumn fx:id="colPuestosReserva" prefWidth="67.0" text="Puestos" />
-                                    <TableColumn fx:id="colTramoReserva" prefWidth="81.0" text="Tramo/Hora" />
-                                    <TableColumn fx:id="colFechaReserva" minWidth="8.0" prefWidth="73.0" text="Fecha" />
-                                    <TableColumn fx:id="colPuntosReserva" prefWidth="85.0" text="Puntos" />
+                                    <TableColumn fx:id="colNombreReserva" prefWidth="110.0" text="Nombre" />
+                                    <TableColumn fx:id="colCorreoReserva" prefWidth="113.0" text="Correo" />
+                                    <TableColumn fx:id="colTelefonoReserva" prefWidth="89.0" text="Teléfono" />
+                                    <TableColumn fx:id="colAulaReserva" prefWidth="93.0" text="Aula" />
+                                    <TableColumn fx:id="colPuestosReserva" prefWidth="70.0" text="Puestos" />
+                                    <TableColumn fx:id="colTramoReserva" prefWidth="131.0" text="Tramo/Hora" />
+                                    <TableColumn fx:id="colFechaReserva" minWidth="8.0" prefWidth="118.0" text="Fecha" />
+                                    <TableColumn fx:id="colPuntosReserva" prefWidth="81.0" text="Puntos" />
                                  </columns>
                               </TableView>
                            </children>
