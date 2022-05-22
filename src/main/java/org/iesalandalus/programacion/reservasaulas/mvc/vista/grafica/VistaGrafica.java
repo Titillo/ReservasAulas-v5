@@ -10,6 +10,7 @@ import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -36,7 +37,8 @@ public class VistaGrafica extends Application implements IVista {
 	@Override
 	public void start(Stage Principal) {
 		try {
-			
+			Principal.setIconified(true);
+			Principal.getIcons().add(new Image(LocalizadorRecursos.class.getResourceAsStream("imagenes/logo-ies.png")));
 			FXMLLoader abrePaginaPrincipal = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/PaginaPrincipal.fxml"));
 			VBox panelPaginaPrincipal = abrePaginaPrincipal.load();
 			
