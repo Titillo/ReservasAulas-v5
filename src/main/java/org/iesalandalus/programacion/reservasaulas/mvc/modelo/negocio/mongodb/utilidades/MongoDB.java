@@ -3,6 +3,7 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.mongodb.u
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,6 +16,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 
+import com.mongodb.MongoClientSettings;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -29,8 +33,6 @@ public class MongoDB {
 	private static final String BD = "reservasaulas";
 	private static final String USER = "reservasaulas";
 	private static final String PASSWORD = "reservasaulas-2022";
-	private static final String URI = String.format("mongodb://%s:%s@%s:%d/?authSource=%s&authMechanism=SCRAM-SHA-1", USER, PASSWORD, SERVIDOR, PUERTO, BD);
-	
 	
 	//Aula
 	public static final String AULA = "aula";
@@ -72,11 +74,16 @@ public class MongoDB {
 	}
 	
 	private static MongoClient establecerConexion() {
-	    Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
-	    mongoLogger.setLevel(Level.SEVERE);
+		Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
+		mongoLogger.setLevel(Level.SEVERE);
 		if (conexion == null) {
-			conexion = MongoClients.create(URI);
-			System.out.println("Conexión a MongoDB realizada correctamente.");	
+			MongoCredential credenciales = MongoCredential.createScramSha1Credential(USER, BD,
+					PASSWORD.toCharArray());
+			conexion = MongoClients.create(MongoClientSettings.builder()
+					.applyToClusterSettings(
+							builder -> builder.hosts(Arrays.asList(new ServerAddress(SERVIDOR, PUERTO))))
+					.credential(credenciales).build());
+			System.out.println("Conexión a MongoDB realizada correctamente.");
 		}
 		return conexion;
 	}
