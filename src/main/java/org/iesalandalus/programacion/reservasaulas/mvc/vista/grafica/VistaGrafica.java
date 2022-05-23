@@ -38,7 +38,7 @@ public class VistaGrafica extends Application implements IVista {
 	public void start(Stage Principal) {
 		try {
 			Principal.setIconified(true);
-			Principal.getIcons().add(new Image(LocalizadorRecursos.class.getResourceAsStream("imagenes/logo-ies.png")));
+			Principal.getIcons().add(new Image(LocalizadorRecursos.class.getResourceAsStream("imagenes/iconoReservas.png")));
 			FXMLLoader abrePaginaPrincipal = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/PaginaPrincipal.fxml"));
 			VBox panelPaginaPrincipal = abrePaginaPrincipal.load();
 			

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,6 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="801.0" styleClass="vbox" stylesheets="@../estilos/bootstrap3.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorPaginaPrincipal">
    <children>
@@ -45,18 +47,23 @@
         <tabs>
           <Tab text="Aulas">
                <content>
-                  <SplitPane dividerPositions="0.13881748071979436, 0.3264781491002571" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.12082262210796915, 0.3059125964010283" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="245.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <ImageView fitHeight="54.0" fitWidth="153.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="304.0" layoutY="2.0" prefHeight="40.0" prefWidth="194.0" text="Gestión de Aulas" textFill="#ff738a">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="29.0" fitWidth="40.0" layoutX="269.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../../../../Downloads/My%20project%20(2).png" />
+                                    <Image url="@../imagenes/gestion.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
+                        <HBox alignment="CENTER" prefHeight="103.0" prefWidth="801.0" spacing="30.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#insertarAula" text="Insertar">
                                  <graphic>
@@ -130,15 +137,25 @@
           </Tab>
           <Tab text="Profesores">
                <content>
-                  <SplitPane dividerPositions="0.2544987146529563" orientation="VERTICAL" prefHeight="408.0" prefWidth="804.0">
+                  <SplitPane dividerPositions="0.12082262210796915, 0.3059125964010283" orientation="VERTICAL" prefHeight="408.0" prefWidth="804.0">
                      <items>
-                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="277.0" layoutY="2.0" prefHeight="40.0" prefWidth="247.0" text="Gestión de Profesores" textFill="#ff738a">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="72.0" fitWidth="149.0" layoutX="66.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="29.0" fitWidth="40.0" layoutX="242.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../../../../Downloads/My%20project%20(2).png" />
+                                    <Image url="@../imagenes/gestion.png" />
                                  </image>
                               </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="801.0" spacing="30.0">
+                           <children>
                               <Button mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar">
                                  <graphic>
                                     <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -146,7 +163,8 @@
                                           <Image url="@../imagenes/insertar.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></Button>
+                                 </graphic>
+                              </Button>
                               <Button mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar">
                                  <graphic>
                                     <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -154,7 +172,8 @@
                                           <Image url="@../imagenes/borrar.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></Button>
+                                 </graphic>
+                              </Button>
                               <Button mnemonicParsing="false" onAction="#listarProfesor" text="Listar">
                                  <graphic>
                                     <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -162,7 +181,8 @@
                                           <Image url="@../imagenes/listar.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></Button>
+                                 </graphic>
+                              </Button>
                               <Button mnemonicParsing="false" onAction="#reservasProfesores" text="Reservas">
                                  <graphic>
                                     <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -170,7 +190,8 @@
                                           <Image url="@../imagenes/reserva.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></Button>
+                                 </graphic>
+                              </Button>
                            </children>
                         </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
@@ -197,9 +218,22 @@
           </Tab>
             <Tab fx:id="tpReservas" text="Rerservas">
                <content>
-                  <SplitPane dividerPositions="0.14414414414414414, 0.3213213213213213" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.12082262210796915, 0.3059125964010283" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                      <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="287.0" layoutY="2.0" prefHeight="40.0" prefWidth="227.0" text="Gestión de Reservas" textFill="#ff738a">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="29.0" fitWidth="40.0" layoutX="251.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/gestion.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#insertarReserva" text="Insertar">
