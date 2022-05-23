@@ -47,7 +47,7 @@
         <tabs>
           <Tab text="Aulas">
                <content>
-                  <SplitPane dividerPositions="0.12082262210796915, 0.3059125964010283" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.12082262210796915, 0.2802056555269923" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
@@ -63,7 +63,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <HBox alignment="CENTER" prefHeight="103.0" prefWidth="801.0" spacing="30.0">
+                        <HBox alignment="CENTER" prefHeight="58.0" prefWidth="801.0" spacing="30.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#insertarAula" text="Insertar">
                                  <graphic>
@@ -137,7 +137,7 @@
           </Tab>
           <Tab text="Profesores">
                <content>
-                  <SplitPane dividerPositions="0.12082262210796915, 0.3059125964010283" orientation="VERTICAL" prefHeight="408.0" prefWidth="804.0">
+                  <SplitPane dividerPositions="0.12082262210796915, 0.2802056555269923" orientation="VERTICAL" prefHeight="408.0" prefWidth="804.0">
                      <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
@@ -154,7 +154,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="801.0" spacing="30.0">
+                        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="801.0" spacing="30.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar">
                                  <graphic>
@@ -196,7 +196,7 @@
                         </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <TableView fx:id="tvProfesor" layoutY="-6.0" prefHeight="276.0" prefWidth="807.0">
+                              <TableView fx:id="tvProfesor" layoutY="-5.0" prefHeight="275.0" prefWidth="807.0">
                                  <columns>
                                     <TableColumn fx:id="colNombreProf" prefWidth="75.0" text="Nombre" />
                                     <TableColumn fx:id="colCorreoProf" prefWidth="75.0" text="Correo" />
@@ -218,7 +218,7 @@
           </Tab>
             <Tab fx:id="tpReservas" text="Rerservas">
                <content>
-                  <SplitPane dividerPositions="0.12082262210796915, 0.3059125964010283" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.12082262210796915, 0.2802056555269923" orientation="VERTICAL" prefHeight="260.0" prefWidth="600.0">
                      <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
