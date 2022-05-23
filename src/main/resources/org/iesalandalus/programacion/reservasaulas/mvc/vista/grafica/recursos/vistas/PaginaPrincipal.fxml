@@ -11,6 +11,8 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -22,8 +24,22 @@
         <menus>
           <Menu mnemonicParsing="false" text="Opciones">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#accionSalir" text="Salir" />
+              <MenuItem mnemonicParsing="false" onAction="#accionSalir" text="Salir">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/salir.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
             </items>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/opciones.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
           </Menu>
         </menus>
       </MenuBar>
@@ -44,11 +60,46 @@
                         </AnchorPane>
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#insertarAula" text="Insertar" />
-                              <Button mnemonicParsing="false" onAction="#borrarAula" text="Borrar" />
-                              <Button mnemonicParsing="false" onAction="#listarAula" text="Listar" />
-                              <Button mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad" />
-                              <Button mnemonicParsing="false" onAction="#reservasAulas" text="Reservas" />
+                              <Button mnemonicParsing="false" onAction="#insertarAula" text="Insertar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/insertar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#borrarAula" text="Borrar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/borrar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#listarAula" text="Listar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/listar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#disponibleAula" text="Disponiblidad">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/disponibilidad.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#reservasAulas" text="Reservas">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/reserva.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -66,6 +117,13 @@
                     </items>
                   </SplitPane>
                </content>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/aula.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
           </Tab>
           <Tab text="Profesores">
                <content>
@@ -82,10 +140,38 @@
                         </AnchorPane>
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar" />
-                              <Button mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar" />
-                              <Button mnemonicParsing="false" onAction="#listarProfesor" text="Listar" />
-                              <Button mnemonicParsing="false" onAction="#reservasProfesores" text="Reservas" />
+                              <Button mnemonicParsing="false" onAction="#insertarProfesor" text="Insertar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/insertar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#borrarProfesor" text="Borrar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/borrar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#listarProfesor" text="Listar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/listar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#reservasProfesores" text="Reservas">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/reserva.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
@@ -102,6 +188,13 @@
                      </items>
                   </SplitPane>
                </content>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/profesor.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
           </Tab>
             <Tab fx:id="tpReservas" text="Rerservas">
                <content>
@@ -109,7 +202,7 @@
                      <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="1.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Reservas" textFill="#ebcc88">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="1.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Reservas" textFill="#ebcb88">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -118,9 +211,30 @@
                         </AnchorPane>
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#insertarReserva" text="Insertar" />
-                              <Button mnemonicParsing="false" onAction="#borrarReserva" text="Borrar" />
-                              <Button mnemonicParsing="false" onAction="#listarReserva" text="Listar" />
+                              <Button mnemonicParsing="false" onAction="#insertarReserva" text="Insertar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/insertar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#borrarReserva" text="Borrar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/borrar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onAction="#listarReserva" text="Listar">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imagenes/listar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </HBox>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
@@ -142,6 +256,13 @@
                      </items>
                   </SplitPane>
                </content>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/reserva.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Tab>
         </tabs>
       </TabPane>
