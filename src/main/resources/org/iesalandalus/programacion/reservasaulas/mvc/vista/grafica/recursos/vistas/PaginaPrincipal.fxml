@@ -51,11 +51,11 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="245.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Aulas" textFill="#21eebe">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="301.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../../../../Downloads/My%20project.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
@@ -202,11 +202,11 @@
                      <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="246.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="1.0" prefHeight="53.0" prefWidth="293.0" text="Gestión de Reservas" textFill="#ebcb88">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
+                              <ImageView fitHeight="53.0" fitWidth="250.0" layoutX="271.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../../../../Downloads/coollogo_com-253134963.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="801.0" spacing="30.0">
